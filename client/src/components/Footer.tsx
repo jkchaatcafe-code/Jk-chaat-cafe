@@ -28,9 +28,9 @@ export default function Footer() {
       <div className="container">
         <div className="foot-grid">
           <div className="foot-brand">
-            <div className="logo-wrapper">
+            <Link to="/" className="footer-brand-link">
               <img src={logo} alt="JK Chaat Cafe" className="footer-logo" />
-            </div>
+            </Link>
             <p>We help entrepreneurs launch profitable cafe businesses — complete setup, supply and support, start to finish.</p>
           </div>
           <div className="foot-col">
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
           <div className="foot-col">
             <h5>Get Franchise Updates</h5>
-            <p style={{ fontSize: 13.5, color: '#000000', marginBottom: 14 }}>City-wise openings and offers, straight to your inbox.</p>
+            <p style={{ fontSize: 13.5, color: '#aaa', marginBottom: 14 }}>City-wise openings and offers, straight to your inbox.</p>
             <form className="foot-form" onSubmit={handleSubmit}>
               <input type="email" placeholder="Enter your email" value={email} required onChange={(e) => setEmail(e.target.value)} />
               <button type="submit" disabled={loading}>{loading ? '...' : 'Subscribe'}</button>
@@ -60,17 +60,21 @@ export default function Footer() {
             {msg && <div className={`form-msg ${msg.type}`} style={{ display: 'block', marginTop: 12 }}>{msg.text}</div>}
           </div>
         </div>
-        <div className="foot-bottom foot-bottom-center">
+        <div className="foot-bottom">
           <span>© 2026 JK Chaat Cafe. All rights reserved.</span>
-          {/* <span><a href="tel:+910000000000">+91 00000 00000</a> · <a href="mailto:jkchaatcafe@gmail.com">jkchaatcafe@gmail.com</a></span> */}
+          <span>
+            <a href="tel:+910000000000">+91 00000 00000</a> · 
+            <a href="mailto:franchise@jkchaatcafe.com"> franchise@jkchaatcafe.com</a>
+          </span>
         </div>
       </div>
 
       <style>{`
+        /* ===== DARK THEME FOOTER ===== */
         footer {
-          background: #FFFFFF !important;
+          background: #0a0a0a !important;
           padding: 60px 0 30px;
-          border-top: 1px solid #E0E0E0;
+          border-top: 1px solid rgba(255, 215, 0, 0.08);
         }
 
         .foot-grid {
@@ -80,9 +84,13 @@ export default function Footer() {
           margin-bottom: 40px;
         }
 
-        .logo-wrapper {
+        .footer-brand-link {
           display: inline-block;
           margin-bottom: 14px;
+        }
+
+        .footer-brand-link:hover {
+          opacity: 0.8;
         }
 
         .foot-brand .footer-logo {
@@ -90,15 +98,15 @@ export default function Footer() {
           width: auto;
           display: block;
           object-fit: contain;
-          /* Important: No filter, no background color */
-          background: transparent;
+          /* Original logo color - no filter */
           filter: none !important;
+          background: transparent;
         }
 
         .foot-brand p {
           font-size: 14px;
-          line-height: 1.6;
-          color: #000000;
+          line-height: 1.7;
+          color: #aaa;
           max-width: 300px;
         }
 
@@ -106,8 +114,8 @@ export default function Footer() {
           font-size: 15px;
           font-weight: 700;
           margin-bottom: 16px;
-          color: #000000;
-          letter-spacing: 0.3px;
+          color: #fff;
+          letter-spacing: 0.5px;
         }
 
         .foot-col ul {
@@ -121,14 +129,15 @@ export default function Footer() {
         }
 
         .foot-col ul li a {
-          color: #000000;
+          color: #aaa;
           text-decoration: none;
           font-size: 14px;
-          transition: color 0.3s ease;
+          transition: all 0.3s ease;
         }
 
         .foot-col ul li a:hover {
           color: #FFD700;
+          padding-left: 6px;
         }
 
         .foot-form {
@@ -140,17 +149,17 @@ export default function Footer() {
         .foot-form input {
           flex: 1;
           padding: 10px 14px;
-          border: 1px solid #E0E0E0;
-          border-radius: 6px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 8px;
           font-size: 14px;
-          background: #FFFFFF;
-          color: #000000;
+          background: #1a1a1a;
+          color: #fff;
           outline: none;
           transition: border-color 0.3s ease;
         }
 
         .foot-form input::placeholder {
-          color: #999999;
+          color: #666;
         }
 
         .foot-form input:focus {
@@ -158,12 +167,12 @@ export default function Footer() {
         }
 
         .foot-form button {
-          padding: 10px 20px;
-          background: #000000;
-          color: #FFFFFF;
+          padding: 10px 24px;
+          background: #FFD700;
+          color: #000;
           border: none;
-          border-radius: 6px;
-          font-weight: 600;
+          border-radius: 8px;
+          font-weight: 700;
           font-size: 14px;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -171,8 +180,9 @@ export default function Footer() {
         }
 
         .foot-form button:hover:not(:disabled) {
-          background: #FFD700;
-          color: #000000;
+          background: #F4C430;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(255, 215, 0, 0.2);
         }
 
         .foot-form button:disabled {
@@ -183,18 +193,18 @@ export default function Footer() {
         .form-msg {
           font-size: 13px;
           padding: 8px 12px;
-          border-radius: 4px;
+          border-radius: 6px;
         }
 
         .form-msg.success {
-          color: #000000;
+          color: #000;
           background: #FFD700;
         }
 
         .form-msg.error {
-          color: #000000;
-          background: #FFF3E0;
-          border: 1px solid #FFD700;
+          color: #fff;
+          background: rgba(255, 0, 0, 0.15);
+          border: 1px solid rgba(255, 0, 0, 0.2);
         }
 
         .foot-bottom {
@@ -202,15 +212,15 @@ export default function Footer() {
           justify-content: space-between;
           align-items: center;
           padding-top: 20px;
-          border-top: 1px solid #E0E0E0;
+          border-top: 1px solid rgba(255, 255, 255, 0.04);
           font-size: 13px;
-          color: #000000;
+          color: #666;
           flex-wrap: wrap;
           gap: 12px;
         }
 
         .foot-bottom a {
-          color: #000000;
+          color: #888;
           text-decoration: none;
           transition: color 0.3s ease;
         }
@@ -237,11 +247,8 @@ export default function Footer() {
           .foot-brand p {
             max-width: 100%;
           }
-          .logo-wrapper {
-            padding: 0;
-          }
           .foot-brand .footer-logo {
-            height: 32px;
+            height: 34px;
           }
           .foot-form {
             flex-direction: column;
