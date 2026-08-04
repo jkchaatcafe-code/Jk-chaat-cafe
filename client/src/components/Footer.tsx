@@ -75,6 +75,7 @@ export default function Footer() {
           background: #0a0a0a !important;
           padding: 60px 0 30px;
           border-top: 1px solid rgba(255, 215, 0, 0.08);
+          margin-top: 0;
         }
 
         .foot-grid {
@@ -98,7 +99,6 @@ export default function Footer() {
           width: auto;
           display: block;
           object-fit: contain;
-          /* Original logo color - no filter */
           filter: none !important;
           background: transparent;
         }
