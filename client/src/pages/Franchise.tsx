@@ -69,16 +69,16 @@ export default function Franchise() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container pkg-grid">
           <Reveal className="pkg-card">
-            <span className="pkg-tag">Starter</span><h3>Kiosk Cafe</h3><div className="pkg-price">₹9.9L <span>/ one-time</span></div>
+            <span className="pkg-tag">Starter</span><h3>Kiosk Cafe</h3><div className="pkg-price">₹5-6L <span>/ one-time</span></div>
             <ul>
-              <li>{check}150–250 sq.ft kiosk format</li><li>{check}Core kitchen equipment</li><li>{check}Starter menu (18–22 items)</li><li>{check}7-day staff training</li><li>{check}3-month guidance</li>
+              <li>{check}150–250 sq.ft kiosk format</li><li>{check}Core kitchen equipment</li><li>{check}Customise menu (18–22 items)</li><li>{check}10 Days Training </li><li>{check}12 Months guidance</li>
             </ul>
             <Link to="/franchise-application?plan=starter" className="btn btn-ghost">Apply for Starter</Link>
           </Reveal>
           <Reveal delay={0.08} className="pkg-card featured">
-            <span className="pkg-tag">Most Chosen</span><h3>Complete Cafe</h3><div className="pkg-price">₹19.5L <span>/ one-time</span></div>
+            <span className="pkg-tag">Most Chosen</span><h3>Complete Cafe</h3><div className="pkg-price">₹9-10L <span>/ one-time</span></div>
             <ul>
-              <li>{check}400–700 sq.ft dine-in format</li><li>{check}Full kitchen & seating setup</li><li>{check}Full menu (45+ items)</li><li>{check}Launch marketing campaign</li><li>{check}12-month guidance</li>
+              <li>{check}300-500 Sq.ft.din-in format</li><li>{check}Full kitchen & seating setup</li><li>{check}Customise menu  (60+ items)</li><li>{check}Launch marketing campaign</li><li>{check}24 Month Guidance</li>
             </ul>
             <Link to="/franchise-application?plan=complete" className="btn btn-ghost">Apply for Complete Cafe</Link>
           </Reveal>

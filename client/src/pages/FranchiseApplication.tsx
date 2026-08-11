@@ -9,6 +9,7 @@ export default function FranchiseApplication() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -26,14 +27,39 @@ export default function FranchiseApplication() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+
+    // Phone number validation
+    if (formData.phone.length < 8 || formData.phone.length > 15) {
+      setError('Phone number must be between 8 and 15 digits');
+      setLoading(false);
+      return;
+    }
+
     try {
-      await submitLead('/leads/franchise-application', formData);
+      // Convert package field to pkg to avoid reserved keyword
+      const payload = {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email || undefined,
+        city: formData.city || undefined,
+        package: formData.package || undefined,
+        budget: formData.budget || undefined,
+        message: formData.message || undefined,
+      };
+      
+      await submitLead('/leads/franchise-application', payload);
       setSuccess(true);
       setTimeout(() => {
         navigate('/');
       }, 3000);
-    } catch (error) {
-      alert('Something went wrong. Please try again.');
+    } catch (err: any) {
+      console.error('Submission error:', err);
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -202,6 +228,14 @@ export default function FranchiseApplication() {
           cursor: not-allowed;
           transform: none;
         }
+        .jk-franchise-app .error-msg {
+          color: #ff6b6b;
+          background: rgba(255,0,0,0.05);
+          padding: 12px 16px;
+          border-radius: 10px;
+          margin-bottom: 16px;
+          border: 1px solid rgba(255,0,0,0.1);
+        }
         @media (max-width: 768px) {
           .jk-franchise-app .form-container {
             padding: 32px 24px;
@@ -258,6 +292,8 @@ export default function FranchiseApplication() {
           <h2>Become a Franchise Partner</h2>
           <p>Fill in your details and our team will reach out to you shortly.</p>
 
+          {error && <div className="error-msg">{error}</div>}
+
           <form onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
@@ -265,8 +301,15 @@ export default function FranchiseApplication() {
                 <input type="text" name="name" value={formData.name} onChange={handleChange} required />
               </div>
               <div className="form-group">
-                <label>Phone Number *</label>
-                <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+                <label>Phone Number * (8-15 digits)</label>
+                <input 
+                  type="tel" 
+                  name="phone" 
+                  value={formData.phone} 
+                  onChange={handleChange} 
+                  required 
+                  placeholder="e.g. 9876543210"
+                />
               </div>
             </div>
 
@@ -286,8 +329,8 @@ export default function FranchiseApplication() {
                 <label>Package</label>
                 <select name="package" value={formData.package} onChange={handleChange}>
                   <option value="">Select a package</option>
-                  <option value="starter">Starter Kiosk Cafe - ₹9.9L</option>
-                  <option value="complete">Complete Cafe - ₹19.5L</option>
+                  <option value="starter">Starter Kiosk Cafe - ₹5-6L</option>
+                  <option value="complete">Complete Cafe - ₹9-10L</option>
                   <option value="master">Master Franchise - Custom</option>
                 </select>
               </div>

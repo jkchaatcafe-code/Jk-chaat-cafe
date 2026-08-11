@@ -13,15 +13,10 @@
 //   { to: '/contact', label: 'Contact' },
 // ];
 
-// // Food emojis for page transition only
-// const foodEmojis = ['🍕', '🍔', '🌮', '🥙', '☕', '🧋', '🍦', '🥤', '🍟', '🌭'];
-
 // export default function Header() {
 //   const [scrolled, setScrolled] = useState(false);
 //   const [menuOpen, setMenuOpen] = useState(false);
 //   const location = useLocation();
-//   const [showTransition, setShowTransition] = useState(false);
-//   const [transitionEmojis, setTransitionEmojis] = useState<string[]>([]);
 
 //   useEffect(() => {
 //     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -33,28 +28,20 @@
 //     document.body.style.overflow = menuOpen ? 'hidden' : '';
 //   }, [menuOpen]);
 
-//   // Page transition effect on route change
-//   useEffect(() => {
-//     setShowTransition(true);
-//     const shuffled = [...foodEmojis].sort(() => 0.5 - Math.random());
-//     setTransitionEmojis(shuffled.slice(0, 6));
-//     const timer = setTimeout(() => setShowTransition(false), 800);
-//     return () => clearTimeout(timer);
-//   }, [location.pathname]);
-
 //   return (
 //     <>
 //       <style>{`
-//         /* ===== HEADER WRAPPER - TRANSPARENT ===== */
+//         /* ===== HEADER WRAPPER - ALWAYS TRANSPARENT ===== */
 //         .header-wr {
 //           position: absolute;
 //           top: 0;
 //           left: 0;
 //           right: 0;
 //           z-index: 1000;
+//           background: transparent !important;
 //         }
 
-//         /* ===== TOP BAR ===== */
+//         /* ===== TOP BAR - ALWAYS TRANSPARENT ===== */
 //         .header-top {
 //           background: transparent !important;
 //           backdrop-filter: none !important;
@@ -167,7 +154,7 @@
 //           fill: #000;
 //         }
 
-//         /* ===== BOTTOM NAVIGATION - CENTERED ===== */
+//         /* ===== BOTTOM NAVIGATION - ALWAYS TRANSPARENT ===== */
 //         .header-bottom {
 //           background: transparent !important;
 //           backdrop-filter: none !important;
@@ -228,14 +215,6 @@
 //         }
 //         .header-menu .menu li a.active::after {
 //           width: 100%;
-//         }
-//         .header-menu .menu li.mobile-menu {
-//           display: none;
-//         }
-
-//         /* ===== CONTACT BUTTON - HIDDEN ===== */
-//         .header-contact-btn {
-//           display: none !important;
 //         }
 
 //         /* ===== BURGER MENU ===== */
@@ -514,7 +493,7 @@
 //                     <li>
 //                       <a href="#" target="_blank" aria-label="YouTube">
 //                         <svg xmlns="http://www.w3.org/2000/svg" width="17.032" height="14.194" viewBox="0 0 17.032 14.194">
-//                           <path d="M4.8,12a4.26,4.26,0,0,1-1.7-.452A3.639,3.639,0,0,1,1.67,10.2a.4.4,0,0,1,.379-.628A4.176,4.176,0,0,0,2.9,9.452a6.779,6.779,0,0,1-.873-.313A3.631,3.631,0,0,1,.022,6.812a.526.526,0,0,1,.663-.647,4.276,4.276,0,0,0,.947.159,4.053,4.053,0,0,1-.8-.756A3.557,3.557,0,0,1,.244,2.334a.521.521,0,0,1,.9-.167,11.215,11.215,0,0,0,1.5,1.242A10.848,10.848,0,0,0,7.863,5.274c.392.037.379.037.331-.338a3.529,3.529,0,0,1,2.383-3.8,3.7,3.7,0,0,1,3.887.774A.3.3,0,0,0,14.772,2a8.023,8.023,0,0,0,1.514-.5c.133-.06.271-.115.385.019s.029.235-.039.35a3.937,3.937,0,0,1-1.254,1.253,5.365,5.365,0,0,0,1.05-.19c.091-.022.179-.055.271-.077a.247.247,0,0,1,.293.084.211.211,0,0,1-.042.285A6.614,6.614,0,0,1,15.779,4.3a.362.362,0,0,0-.167.34,10.132,10.132,0,0,1-2.75,7.146A9.885,9.885,0,0,1,7.127,14.9a11.054,11.054,0,0,1-6.862-.91c-.131-.063-.3-.115-.255-.3s.22-.173.369-.174A7.531,7.531,0,0,0,4.8,12Z" transform="translate(0 -0.893)" fill="#fff"/>
+//                           <path d="M4.8,12a4.26,4.26,0,0,1-1.7-.452A3.639,3.639,0,0,1,1.67,10.2a.4.4,0,0,1,.379-.628A4.176,4.176,0,0,0,2.9,9.452a6.779,6.779,0,0,1-.873-.313A3.631,3.631,0,0,1,.022,6.812a.526.526,0,0,1,.663-.647,4.276,4.276,0,0,0,.947.159,4.053,4.053,0,0,1-.8-.756A3.557,3.557,0,0,1,.244,2.334a.521.521,0,0,1,.9-.167,11.215,11.215,0,0,0,1.5,1.242A10.848,10.848,0,0,0,7.863,5.274c.392.037.379.037.331-.338a3.529,3.529,0,0,1,2.383-3.8,3.7,3.7,0,0,1,3.887.774.3.3,0,0,0,.307.112,8.023,8.023,0,0,0,1.514-.5c.133-.06.271-.115.385.019s.029.235-.039.35a3.937,3.937,0,0,1-1.254,1.253,5.365,5.365,0,0,0,1.05-.19c.091-.022.179-.055.271-.077a.247.247,0,0,1,.293.084.211.211,0,0,1-.042.285A6.614,6.614,0,0,1,15.779,4.3a.362.362,0,0,0-.167.34,10.132,10.132,0,0,1-2.75,7.146A9.885,9.885,0,0,1,7.127,14.9a11.054,11.054,0,0,1-6.862-.91c-.131-.063-.3-.115-.255-.3s.22-.173.369-.174A7.531,7.531,0,0,0,4.8,12Z" transform="translate(0 -0.893)" fill="#fff"/>
 //                         </svg>
 //                       </a>
 //                     </li>
@@ -578,41 +557,10 @@
 //           Contact Us
 //         </Link>
 //       </div>
-
-//       {/* ===== PAGE TRANSITION ANIMATION ===== */}
-//       <AnimatePresence>
-//         {showTransition && (
-//           <motion.div
-//             className="jk-page-transition"
-//             initial={{ opacity: 0 }}
-//             animate={{ opacity: 1 }}
-//             exit={{ opacity: 0 }}
-//             transition={{ duration: 0.3 }}
-//           >
-//             <motion.div
-//               className="jk-transition-emojis"
-//               initial={{ scale: 0.5, opacity: 0 }}
-//               animate={{ scale: 1, opacity: 1 }}
-//               exit={{ scale: 0.5, opacity: 0 }}
-//               transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
-//             >
-//               {transitionEmojis.map((emoji, i) => (
-//                 <motion.span
-//                   key={i}
-//                   initial={{ rotate: -20, scale: 0 }}
-//                   animate={{ rotate: 0, scale: 1 }}
-//                   transition={{ delay: i * 0.07, duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
-//                 >
-//                   {emoji}
-//                 </motion.span>
-//               ))}
-//             </motion.div>
-//           </motion.div>
-//         )}
-//       </AnimatePresence>
 //     </>
 //   );
 // }
+
 
 import { useEffect, useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
@@ -657,11 +605,11 @@ export default function Header() {
           background: transparent !important;
         }
 
-        /* ===== TOP BAR - ALWAYS TRANSPARENT ===== */
+        /* ===== TOP BAR ===== */
         .header-top {
           background: transparent !important;
           backdrop-filter: none !important;
-          padding: 12px 0;
+          padding: 10px 0;
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .header-top .center-wr {
@@ -687,24 +635,26 @@ export default function Header() {
           width: auto;
           filter: none !important;
         }
+
+        /* ===== CONTACT & SOCIAL ===== */
         .header-call-email-block {
           display: flex;
           align-items: center;
-          gap: 24px;
+          gap: 20px;
           flex-wrap: wrap;
         }
         .header-call-email {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
         }
         .header-call-email figure {
           margin: 0;
           flex-shrink: 0;
         }
         .header-call-email figure img {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
           filter: brightness(0) invert(1);
         }
         .header-call-email-detail {
@@ -715,13 +665,13 @@ export default function Header() {
         }
         .header-call-email-detail span {
           color: rgba(255,255,255,0.5);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 500;
         }
         .header-call-email-detail a {
           color: rgba(255,255,255,0.8);
           text-decoration: none;
-          font-size: 13px;
+          font-size: 12px;
           transition: color 0.3s ease;
         }
         .header-call-email-detail a:hover {
@@ -732,16 +682,16 @@ export default function Header() {
           margin: 0 2px;
         }
 
-        /* ===== SOCIAL ICONS - RIGHT SIDE ===== */
+        /* ===== SOCIAL ICONS ===== */
         .header-social-icon {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 10px;
         }
         .header-social-icon ul {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 8px;
           list-style: none;
           margin: 0;
           padding: 0;
@@ -750,8 +700,8 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 28px;
-          height: 28px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
           background: rgba(255,255,255,0.05);
           transition: all 0.3s ease;
@@ -761,8 +711,8 @@ export default function Header() {
           transform: translateY(-2px);
         }
         .header-social-icon ul li a svg {
-          width: 14px;
-          height: 14px;
+          width: 12px;
+          height: 12px;
           fill: #fff;
           transition: fill 0.3s ease;
         }
@@ -770,7 +720,7 @@ export default function Header() {
           fill: #000;
         }
 
-        /* ===== BOTTOM NAVIGATION - ALWAYS TRANSPARENT ===== */
+        /* ===== BOTTOM NAVIGATION ===== */
         .header-bottom {
           background: transparent !important;
           backdrop-filter: none !important;
@@ -785,7 +735,7 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 10px 0;
+          padding: 8px 0;
         }
         .header-menu {
           display: flex;
@@ -794,7 +744,7 @@ export default function Header() {
         .header-menu .menu {
           display: flex;
           align-items: center;
-          gap: 32px;
+          gap: 28px;
           list-style: none;
           margin: 0;
           padding: 0;
@@ -802,7 +752,7 @@ export default function Header() {
         .header-menu .menu li a {
           color: rgba(255,255,255,0.85);
           text-decoration: none;
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 500;
           position: relative;
           padding: 4px 0;
@@ -837,7 +787,7 @@ export default function Header() {
         .burger {
           display: none;
           flex-direction: column;
-          gap: 5px;
+          gap: 4px;
           background: none;
           border: none;
           cursor: pointer;
@@ -846,7 +796,7 @@ export default function Header() {
         }
         .burger span {
           display: block;
-          width: 26px;
+          width: 24px;
           height: 2px;
           background: #fff;
           border-radius: 2px;
@@ -854,34 +804,34 @@ export default function Header() {
           transform-origin: center;
         }
         .burger.open span:nth-child(1) {
-          transform: rotate(45deg) translate(5px, 5px);
+          transform: rotate(45deg) translate(4px, 4px);
         }
         .burger.open span:nth-child(2) {
           opacity: 0;
           transform: scaleX(0);
         }
         .burger.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(5px, -5px);
+          transform: rotate(-45deg) translate(4px, -4px);
         }
         .burger:hover span {
           background: #FFD700;
         }
 
-        /* ===== MOBILE MENU ===== */
+        /* ===== MOBILE MENU - FULL SCREEN ===== */
         .jk-mobile-menu {
           position: fixed;
           top: 0;
           right: -100%;
           width: 100%;
-          max-width: 400px;
+          max-width: 360px;
           height: 100vh;
           background: rgba(10,10,10,0.98);
           backdrop-filter: blur(20px);
-          padding: 90px 32px 40px;
+          padding: 80px 28px 40px;
           display: flex;
           flex-direction: column;
-          gap: 4px;
-          transition: right 0.4s cubic-bezier(0.22,1,0.36,1);
+          gap: 2px;
+          transition: right 0.35s cubic-bezier(0.22,1,0.36,1);
           z-index: 999;
           border-left: 1px solid rgba(255,215,0,0.05);
           overflow-y: auto;
@@ -892,30 +842,43 @@ export default function Header() {
         .jk-mobile-menu a {
           color: rgba(255,255,255,0.85);
           text-decoration: none;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 500;
-          padding: 16px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
+          padding: 14px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.04);
           transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
         }
         .jk-mobile-menu a:last-of-type {
           border-bottom: none;
         }
         .jk-mobile-menu a:hover {
           color: #FFD700;
-          padding-left: 12px;
+          padding-left: 8px;
+        }
+        .jk-mobile-menu a::after {
+          content: '→';
+          opacity: 0.3;
+          font-size: 14px;
+          transition: all 0.3s ease;
+        }
+        .jk-mobile-menu a:hover::after {
+          opacity: 1;
+          transform: translateX(4px);
         }
         .jk-mobile-menu .btn {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 10px;
-          padding: 16px 24px;
-          border-radius: 12px;
-          font-size: 16px;
+          padding: 14px 20px;
+          border-radius: 10px;
+          font-size: 15px;
           font-weight: 600;
           text-decoration: none;
-          margin-top: 24px;
+          margin-top: 20px;
           background: #FFD700;
           color: #000;
           border: none;
@@ -935,12 +898,12 @@ export default function Header() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0,0,0,0.6);
-          backdrop-filter: blur(4px);
+          background: rgba(0,0,0,0.5);
+          backdrop-filter: blur(3px);
           z-index: 998;
           opacity: 0;
           visibility: hidden;
-          transition: all 0.4s ease;
+          transition: all 0.35s ease;
         }
         .jk-menu-overlay.open {
           opacity: 1;
@@ -953,8 +916,11 @@ export default function Header() {
           .header-bottom .center-wr {
             padding: 0 24px;
           }
-          .header-call-email-block {
-            gap: 16px;
+          .header-menu .menu {
+            gap: 20px;
+          }
+          .header-menu .menu li a {
+            font-size: 12px;
           }
         }
 
@@ -966,24 +932,7 @@ export default function Header() {
             display: flex;
           }
           .header-logo-block img {
-            height: 40px;
-          }
-          .header-call-email-block {
-            gap: 10px;
-          }
-          .header-call-email-detail span {
-            font-size: 11px;
-          }
-          .header-call-email-detail a {
-            font-size: 11px;
-          }
-          .header-social-icon ul li a {
-            width: 24px;
-            height: 24px;
-          }
-          .header-social-icon ul li a svg {
-            width: 12px;
-            height: 12px;
+            height: 38px;
           }
           .header-top {
             padding: 8px 0;
@@ -991,39 +940,66 @@ export default function Header() {
           .header-bottom-content {
             justify-content: space-between;
           }
-          .jk-mobile-menu {
-            max-width: 100%;
-            padding: 80px 24px 30px;
-          }
-          .jk-mobile-menu a {
-            font-size: 18px;
-            padding: 14px 0;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .header-top .center-wr,
-          .header-bottom .center-wr {
-            padding: 0 16px;
-          }
-          .header-logo-block img {
-            height: 34px;
-          }
-          .header-call-email {
-            gap: 6px;
-          }
-          .header-call-email figure img {
-            width: 16px;
-            height: 16px;
+          .header-call-email-block {
+            gap: 10px;
           }
           .header-call-email-detail span {
             font-size: 10px;
           }
           .header-call-email-detail a {
-            font-size: 10px;
+            font-size: 11px;
+          }
+          .header-call-email figure img {
+            width: 16px;
+            height: 16px;
+          }
+          .header-social-icon ul li a {
+            width: 22px;
+            height: 22px;
+          }
+          .header-social-icon ul li a svg {
+            width: 11px;
+            height: 11px;
           }
           .header-social-icon ul {
             gap: 6px;
+          }
+          .jk-mobile-menu {
+            max-width: 100%;
+            padding: 80px 24px 30px;
+          }
+          .jk-mobile-menu a {
+            font-size: 17px;
+            padding: 12px 0;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .header-top .center-wr,
+          .header-bottom .center-wr {
+            padding: 0 16px;
+          }
+          .header-logo-block img {
+            height: 32px;
+          }
+          .header-top {
+            padding: 6px 0;
+          }
+          .header-bottom-content {
+            padding: 6px 0;
+          }
+          .header-call-email {
+            gap: 4px;
+          }
+          .header-call-email-detail span {
+            font-size: 9px;
+          }
+          .header-call-email-detail a {
+            font-size: 10px;
+          }
+          .header-call-email figure img {
+            width: 14px;
+            height: 14px;
           }
           .header-social-icon ul li a {
             width: 20px;
@@ -1033,19 +1009,53 @@ export default function Header() {
             width: 10px;
             height: 10px;
           }
-          .header-bottom-content {
-            padding: 8px 0;
+          .header-social-icon ul {
+            gap: 4px;
           }
           .burger span {
-            width: 22px;
+            width: 20px;
             height: 2px;
+          }
+          .burger {
+            gap: 3px;
           }
           .jk-mobile-menu {
             padding: 70px 20px 30px;
           }
           .jk-mobile-menu a {
-            font-size: 17px;
-            padding: 12px 0;
+            font-size: 16px;
+            padding: 10px 0;
+          }
+          .jk-mobile-menu .btn {
+            font-size: 14px;
+            padding: 12px 16px;
+          }
+          .header-call-email-block {
+            gap: 6px;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .header-logo-block img {
+            height: 28px;
+          }
+          .header-call-email-detail span {
+            display: none;
+          }
+          .header-call-email-detail a {
+            font-size: 9px;
+          }
+          .header-social-icon ul li a {
+            width: 18px;
+            height: 18px;
+          }
+          .header-social-icon ul li a svg {
+            width: 9px;
+            height: 9px;
+          }
+          .jk-mobile-menu a {
+            font-size: 15px;
+            padding: 8px 0;
           }
         }
       `}</style>
@@ -1065,18 +1075,20 @@ export default function Header() {
 
               {/* CONTACT & SOCIAL - RIGHT */}
               <div className="header-call-email-block">
+                {/* Call */}
                 <div className="header-call-email">
                   <figure>
                     <img src="https://www.chaatpuchka.net/wp-content/uploads/2023/07/header_callus.svg" alt="Call Us" />
                   </figure>
                   <div className="header-call-email-detail">
-                    <span>Call Us:</span>
-                    <a href="tel:+919039554484">+91 90395 54484</a>
+                    <span>Call:</span>
+                    <a href="tel:+919039554484">90395 54484</a>
                     <span className="comma">,</span>
-                    <a href="tel:+919039556484">+91 90395 56484</a>
+                    <a href="tel:+919039556484">90395 56484</a>
                   </div>
                 </div>
 
+                {/* Email - Hide on mobile */}
                 <div className="header-call-email hide-mobile">
                   <figure>
                     <img src="https://www.chaatpuchka.net/wp-content/uploads/2023/07/header_email.svg" alt="Email" />
@@ -1115,13 +1127,24 @@ export default function Header() {
                     </li>
                   </ul>
                 </div>
+
+                {/* BURGER - Mobile */}
+                <button 
+                  className={`burger ${menuOpen ? 'open' : ''}`} 
+                  aria-label="Menu" 
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ===== BOTTOM NAVIGATION - CENTERED ===== */}
-        <div className="header-bottom">
+        {/* ===== BOTTOM NAVIGATION - DESKTOP ONLY ===== */}
+        <div className="header-bottom hide-mobile">
           <div className="center-wr">
             <div className="header-bottom-content">
               <div className="header-menu">
@@ -1140,16 +1163,6 @@ export default function Header() {
                   ))}
                 </ul>
               </div>
-
-              <button 
-                className={`burger ${menuOpen ? 'open' : ''}`} 
-                aria-label="Menu" 
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
             </div>
           </div>
         </div>
@@ -1170,7 +1183,7 @@ export default function Header() {
           className="btn"
           onClick={() => setMenuOpen(false)}
         >
-          Contact Us
+          Apply for Franchise
         </Link>
       </div>
     </>

@@ -76,7 +76,7 @@ const testimonials = [
   },
   { 
     name: 'Vinit Tiwari', 
-    text: 'Chaat Puchka itself provides training of its products to its franchise owner along with the service of the staff.', 
+    text: 'chai coffee itself provides training of its products to its franchise owner along with the service of the staff.', 
     city: 'Bhopal',
     image: 'https://randomuser.me/api/portraits/men/2.jpg'
   },
@@ -93,7 +93,7 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', enquiry: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', city: '', enquiry: '' });
   const [showThankYou, setShowThankYou] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
@@ -124,12 +124,13 @@ export default function Home() {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
+        city: formData.city,
         message: formData.enquiry,
       });
       setShowPopup(false);
       setShowThankYou(true);
       setTimeout(() => setShowThankYou(false), 3000);
-      setFormData({ name: '', email: '', phone: '', enquiry: '' });
+      setFormData({ name: '', email: '', phone: '', city: '', enquiry: '' });
     } catch (err: any) {
       setFormError(err?.response?.data?.message || 'Could not submit. Please check your connection and try again.');
     } finally {
@@ -353,7 +354,7 @@ export default function Home() {
           padding: 0;
         }
         .jk-slider-dot.active {
-          background: #c7ab0c;
+          background: #9c9b5b;
           border-color: #FFD700;
           transform: scale(1.2);
         }
@@ -874,6 +875,7 @@ export default function Home() {
             <form onSubmit={handleFormSubmit}>
               <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
               <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
+              <input type="city" placeholder="City" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} required />
               <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
               <textarea placeholder="Your Enquiry..." value={formData.enquiry} onChange={(e) => setFormData({...formData, enquiry: e.target.value})} />
               <button type="submit" className="btn btn-primary" disabled={submitting}>
