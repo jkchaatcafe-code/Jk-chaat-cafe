@@ -1026,7 +1026,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ TESTIMONIALS ============ */}
+      {/* ============ TESTIMONIALS ============
       <section className="section jk-testimonials">
         <div className="container">
           <Reveal className="section-head center">
@@ -1058,7 +1058,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ============ CTA ============ */}
       <section className="section jk-cta">
