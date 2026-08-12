@@ -588,7 +588,7 @@ export default function About() {
                 </svg>
               </div>
               <h3>Our Vision</h3>
-              <p>To promote platform to start business of Ethnic fast Food with a low Investment & Good Returns.</p>
+              <p>"To bring people together over unforgettable food, setting new standards in taste, innovation, and franchise success."</p>
             </motion.div>
 
             <motion.div className="jk-mission-card"
@@ -604,7 +604,7 @@ export default function About() {
                 </svg>
               </div>
               <h3>Our Mission</h3>
-              <p>To Spread the Legacy of Fast Foods in a unique manner across the Globe.</p>
+              <p>"To deliver delicious, high-quality, and hygienic food with consistent taste across every outlet, creating memorable dining experiences for our customers while empowering our franchise partners to grow successfully."</p>
             </motion.div>
           </div>
         </div>
