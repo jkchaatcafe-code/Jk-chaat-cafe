@@ -63,8 +63,8 @@ export default function Footer() {
         <div className="foot-bottom">
           <span>© 2026 JK Chaat Cafe. All rights reserved.</span>
           <span>
-            <a href="tel:+910000000000">+91 00000 00000</a> · 
-            <a href="mailto:franchise@jkchaatcafe.com"> franchise@jkchaatcafe.com</a>
+            <a href="tel:+910000000000">9981105588</a> · 
+            <a href="mailto:franchise@jkchaatcafe.com">info@jkchaatcafe.com</a>
           </span>
         </div>
       </div>

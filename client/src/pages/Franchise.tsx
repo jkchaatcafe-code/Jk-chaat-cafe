@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Reveal from '../components/Reveal';
+// Import local hero image
+import franchiseHero from '../assets/img/franchisehero.jpeg';
 
 const IMG = {
-  hero: 'https://images.pexels.com/photos/34270741/pexels-photo-34270741.jpeg?auto=compress&cs=tinysrgb&w=1600',
+  hero: franchiseHero, // Use imported local image
   handshake: 'https://images.pexels.com/photos/33175648/pexels-photo-33175648.jpeg?auto=compress&cs=tinysrgb&w=900',
   kitchen: 'https://images.pexels.com/photos/19553654/pexels-photo-19553654.jpeg?auto=compress&cs=tinysrgb&w=900',
   chef: 'https://images.pexels.com/photos/30120987/pexels-photo-30120987.jpeg?auto=compress&cs=tinysrgb&w=900',
@@ -28,7 +30,7 @@ export default function Franchise() {
     <div className="jk-franchise-v2">
       {/* ============ HERO ============ */}
       <section className="fr-hero">
-        <div className="fr-hero-bg"><img src={IMG.hero} alt="Fresh chaat prepared for JK Chaat Cafe outlets" /></div>
+        <div className="fr-hero-bg"><img src={IMG.hero} alt="JK Chaat Cafe Franchise Opportunities" /></div>
         <div className="fr-hero-overlay" />
         <div className="container fr-hero-content">
           <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
@@ -153,20 +155,21 @@ export default function Franchise() {
           -webkit-text-fill-color: transparent;
         }
 
-        /* ===== HERO ===== */
+        /* ===== HERO - OPTIMIZED IMAGE DISPLAY ===== */
         .fr-hero {
           position: relative;
-          min-height: 110vh;
+          min-height: 90vh;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
-          padding-bottom: 60px;
           margin-top: -80px;
-          padding-top: 120px;
+          padding-top: 80px;
         }
         .fr-hero-bg {
           position: absolute;
-          inset: -20% 0 0 0;
+          inset: -10% 0 -10% 0;
+          width: 100%;
           height: 120%;
           z-index: 0;
         }
@@ -174,18 +177,20 @@ export default function Franchise() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center 30%;
           display: block;
         }
         .fr-hero-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.92) 100%);
+          background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.85) 100%);
+          z-index: 1;
         }
         .fr-hero-content {
           position: relative;
-          z-index: 1;
+          z-index: 2;
           max-width: 820px;
-          padding-top: 20px;
+          padding-top: 40px;
           text-align: center;
           margin: 0 auto;
         }
@@ -387,50 +392,6 @@ export default function Franchise() {
           line-height: 1.55;
         }
 
-        /* ===== CTA ===== */
-        .fr-cta {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 24px;
-          flex-wrap: wrap;
-          background: #1a1a1a;
-          border-radius: 28px;
-          padding: 46px 44px;
-          border: 1px solid rgba(255,215,0,0.05);
-        }
-        .fr-cta h2 {
-          color: #fff;
-          font-size: 1.7rem;
-          margin-bottom: 8px;
-        }
-        .fr-cta p {
-          color: #aaa;
-          font-size: 0.98rem;
-        }
-        .fr-cta .btn-primary {
-          background: #FFD700;
-          color: #000;
-          padding: 14px 32px;
-          border-radius: 12px;
-          font-weight: 700;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          transition: all 0.3s ease;
-          border: none;
-        }
-        .fr-cta .btn-primary:hover {
-          background: #F4C430;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 30px rgba(255,215,0,0.2);
-        }
-        .fr-cta .btn-primary svg {
-          width: 18px;
-          height: 18px;
-        }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
           .fr-models-grid,
@@ -439,7 +400,7 @@ export default function Franchise() {
             grid-template-columns: repeat(2, 1fr);
           }
           .fr-hero {
-            min-height: 45vh;
+            min-height: 60vh;
           }
           .fr-hero-content h1 {
             font-size: 2.8rem;
@@ -452,16 +413,8 @@ export default function Franchise() {
           .pkg-grid {
             grid-template-columns: 1fr;
           }
-          .fr-cta {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 30px 24px;
-          }
-          .fr-cta h2 {
-            font-size: 1.4rem;
-          }
           .fr-hero {
-            min-height: 35vh;
+            min-height: 50vh;
             margin-top: -60px;
             padding-top: 100px;
           }
@@ -471,26 +424,22 @@ export default function Franchise() {
           .fr-hero-content p {
             font-size: 1rem;
           }
+          .fr-hero-bg img {
+            object-position: center 40%;
+          }
         }
 
         @media (max-width: 576px) {
           .fr-hero {
             margin-top: -40px;
             padding-top: 80px;
-            min-height: 30vh;
+            min-height: 40vh;
           }
           .fr-hero-content h1 {
             font-size: 1.8rem;
           }
-          .fr-cta {
-            padding: 24px 18px;
-          }
-          .fr-cta h2 {
-            font-size: 1.2rem;
-          }
-          .fr-cta .btn-primary {
-            width: 100%;
-            justify-content: center;
+          .fr-hero-bg img {
+            object-position: center 35%;
           }
         }
       `}</style>

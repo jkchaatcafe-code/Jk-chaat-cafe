@@ -5,13 +5,14 @@ import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import { submitLead } from '../api/client';
 
-// ---- Background Images for Slider ----
-const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1600&q=80',
-  'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80',
-  'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=80',
-  'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80',
-];
+// ---- Local Images for Slider ----
+import hero1 from '../assets/img/homepagehero1.jpeg';
+import hero2 from '../assets/img/homepagehero2.jpeg';
+import hero3 from '../assets/img/homepagehero3.jpeg';
+import hero4 from '../assets/img/homepagehero4.jpeg';
+import about from '../assets/img/homepageabout.jpeg';
+
+const HERO_IMAGES = [hero1, hero2, hero3, hero4];
 
 // Menu Items - Real Menu
 const menuItems = {
@@ -875,7 +876,7 @@ export default function Home() {
             <form onSubmit={handleFormSubmit}>
               <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
               <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
-              <input type="city" placeholder="City" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} required />
+              <input type="text" placeholder="City" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} required />
               <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
               <textarea placeholder="Your Enquiry..." value={formData.enquiry} onChange={(e) => setFormData({...formData, enquiry: e.target.value})} />
               <button type="submit" className="btn btn-primary" disabled={submitting}>
@@ -914,7 +915,7 @@ export default function Home() {
         <div className="container">
           <div className="jk-about-grid">
             <motion.div className="jk-about-text" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-              <div className="eyebrow">Top Franchise Business</div>
+              {/* <div className="eyebrow">Top Franchise Business</div> */}
               <h2 className="section-title">Profitable and consistent growth as the ingredient to achieve our goal.</h2>
               <p>We've grown into a top-notch food franchise brand by continuously offering quality services to our clients. Being one of the most-trusted food brands, our focus is to deliver rich quality food, hygiene, awesome taste, and unmatched services to our partners.</p>
               <div className="jk-about-features">
@@ -932,7 +933,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div className="jk-about-image" initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80" alt="Cafe interior" />
+              <img src={about} alt="JK Chaat Cafe" />
               <div className="jk-about-badge">
                 <span className="num">6+</span>
                 <span className="label">Years of Excellence</span>
@@ -946,7 +947,7 @@ export default function Home() {
       <section className="section jk-why-us">
         <div className="container">
           <Reveal className="section-head center">
-            <div className="eyebrow">Why Choose Our Franchise Model</div>
+            {/* <div className="eyebrow">Why Choose Our Franchise Model</div> */}
             <h2 className="section-title">Your Success, Our Priority</h2>
           </Reveal>
 
@@ -977,7 +978,7 @@ export default function Home() {
       <section className="section jk-menu">
         <div className="container">
           <Reveal className="section-head center">
-            <div className="eyebrow">Our Tasty Menu</div>
+            {/* <div className="eyebrow">Our Tasty Menu</div> */}
             <h2 className="section-title">Check Our Delicious Menu</h2>
           </Reveal>
 
@@ -1010,7 +1011,7 @@ export default function Home() {
       <section className="section jk-features">
         <div className="container">
           <Reveal className="section-head center">
-            <div className="eyebrow">Our Best Features</div>
+            {/* <div className="eyebrow">Our Best Features</div> */}
             <h2 className="section-title">What Makes Us Different</h2>
           </Reveal>
 
@@ -1026,8 +1027,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ TESTIMONIALS ============
-      <section className="section jk-testimonials">
+      {/* ============ TESTIMONIALS ============ */}
+      {/* <section className="section jk-testimonials">
         <div className="container">
           <Reveal className="section-head center">
             <div className="eyebrow">Happy Clients</div>

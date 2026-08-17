@@ -312,7 +312,7 @@ export default function Contact() {
           <div className="hero-overlay" />
         </div>
         <div className="container hero-content">
-          <div className="breadcrumb"><Link to="/">Home</Link> / Contact</div>
+          {/* <div className="breadcrumb"><Link to="/">Home</Link> / Contact</div> */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -379,7 +379,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4>Call Us</h4>
-                <p>+91 90395 54484</p>
+                <p>+91 9981105588</p>
               </div>
             </div>
 

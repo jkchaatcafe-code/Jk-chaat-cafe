@@ -4,12 +4,15 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from '../components/Reveal';
 import Journey from '../components/Journey';
 import CountUp from '../components/CountUp';
+import aboutHeroImg from '../assets/img/aboutpagehero.jpeg';
+import aboutInteriorImg from '../assets/img/aboutinterior.jpeg';
+import aboutKitchenImg from '../assets/img/aboutkitchen.jpeg';
 
 // ---- Premium Images ----
 const IMG = {
-  aboutHero: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600&q=80',
-  interior: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80',
-  kitchen: 'https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=1200&q=80',
+  aboutHero: aboutHeroImg,
+  interior: aboutInteriorImg,
+  kitchen: aboutKitchenImg,
 };
 
 const historySteps = [
@@ -64,14 +67,50 @@ export default function About() {
   return (
     <div className="jk-about">
       <style>{`
-        /* ===== DARK THEME BASE ===== */
+        /* ===== DARK THEME BASE WITH BACKGROUND IMAGE ===== */
         .jk-about {
           background: #0a0a0a;
           margin-top: 0;
+          position: relative;
+          min-height: 100vh;
         }
+
+        /* ===== BACKGROUND IMAGE - BRIGHT & CLEAR ===== */
+        .jk-about-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          background-image: url(${aboutHeroImg});
+          background-size: contain;
+          background-position: center top;
+          background-repeat: no-repeat;
+          background-attachment: scroll;
+          opacity: 0.25;
+          pointer-events: none;
+          filter: brightness(1.2) contrast(1.1);
+        }
+
+        .jk-about-bg::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 40%;
+          background: linear-gradient(180deg, transparent, #0a0a0a);
+        }
+
+        /* ===== ALL SECTIONS TRANSPARENT ===== */
         .jk-about .section {
           padding: 60px 0;
+          position: relative;
+          z-index: 1;
+          background: transparent !important;
         }
+
         .jk-about .section-title {
           font-size: clamp(2rem, 4vw, 3rem);
           line-height: 1.2;
@@ -101,10 +140,10 @@ export default function About() {
           -webkit-text-fill-color: transparent;
         }
 
-        /* ===== HERO - CENTERED CONTENT ===== */
+        /* ===== HERO ===== */
         .jk-about-hero {
           position: relative;
-          min-height: 110vh;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -113,23 +152,8 @@ export default function About() {
           padding: 40px 0 60px;
           margin-top: -60px;
           padding-top: 120px;
-        }
-        .jk-about-hero-bg {
-          position: absolute;
-          inset: -25% 0 0 0;
-          height: 125%;
-          z-index: 0;
-        }
-        .jk-about-hero-bg img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transform: scale(1.05);
-        }
-        .jk-about-hero-gradient {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.92) 100%);
+          z-index: 1;
+          background: transparent !important;
         }
         .jk-about-hero-content {
           position: relative;
@@ -137,31 +161,6 @@ export default function About() {
           max-width: 820px;
           margin: 0 auto;
           padding-top: 40px;
-        }
-        .jk-about-hero-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          background: rgba(255,215,0,0.1);
-          border: 1px solid rgba(255,215,0,0.2);
-          padding: 8px 20px;
-          border-radius: 100px;
-          color: #FFD700;
-          font-size: 0.85rem;
-          font-weight: 600;
-          margin: 0 auto 20px;
-          width: fit-content;
-        }
-        .jk-about-hero-badge-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #FFD700;
-          animation: pulse-dot 2s infinite;
-        }
-        @keyframes pulse-dot {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(0.8); }
         }
         .jk-about-hero h1 {
           font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -181,7 +180,6 @@ export default function About() {
         }
 
         /* ===== ABOUT CONTENT ===== */
-        .jk-about-content { background: #0d0d0d; }
         .jk-about-grid {
           display: grid;
           grid-template-columns: 1fr 0.9fr;
@@ -189,7 +187,7 @@ export default function About() {
           align-items: center;
         }
         .jk-about-text .section-title { margin: 10px 0 16px; }
-        .jk-about-text p { color: #aaa; font-size: 1.05rem; line-height: 1.8; }
+        .jk-about-text p { color: #ddd; font-size: 1.05rem; line-height: 1.8; }
         .jk-about-image-wrap { position: relative; }
         .jk-about-image-wrap img {
           width: 100%;
@@ -202,7 +200,8 @@ export default function About() {
           position: absolute;
           bottom: -20px;
           right: -20px;
-          background: #1a1a1a;
+          background: rgba(26,26,26,0.9);
+          backdrop-filter: blur(12px);
           border: 2px solid #FFD700;
           padding: 16px 24px;
           border-radius: 16px;
@@ -222,7 +221,6 @@ export default function About() {
         }
 
         /* ===== FEATURES ===== */
-        .jk-about-features { background: #0a0a0a; }
         .jk-about-features-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -230,7 +228,8 @@ export default function About() {
           margin-top: 40px;
         }
         .jk-about-feature-card {
-          background: #1a1a1a;
+          background: rgba(26,26,26,0.7);
+          backdrop-filter: blur(12px);
           border: 1px solid rgba(255,255,255,0.04);
           border-radius: 20px;
           padding: 32px 24px;
@@ -238,9 +237,10 @@ export default function About() {
           transition: all 0.3s ease;
         }
         .jk-about-feature-card:hover {
-          border-color: rgba(255,215,0,0.1);
+          border-color: rgba(255,215,0,0.15);
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px -16px rgba(0,0,0,0.4);
+          box-shadow: 0 20px 40px -16px rgba(0,0,0,0.5);
+          background: rgba(26,26,26,0.85);
         }
         .jk-about-feature-icon {
           width: 56px;
@@ -273,14 +273,13 @@ export default function About() {
           margin: 0 0 8px;
         }
         .jk-about-feature-card p {
-          color: #aaa;
+          color: #ccc;
           font-size: 0.9rem;
           line-height: 1.6;
           margin: 0;
         }
 
         /* ===== MISSION VISION ===== */
-        .jk-about-mission { background: #0d0d0d; }
         .jk-mission-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -288,7 +287,8 @@ export default function About() {
           margin-top: 40px;
         }
         .jk-mission-card {
-          background: #1a1a1a;
+          background: rgba(26,26,26,0.7);
+          backdrop-filter: blur(12px);
           border: 1px solid rgba(255,255,255,0.04);
           border-radius: 20px;
           padding: 32px 28px;
@@ -299,6 +299,7 @@ export default function About() {
           border-color: rgba(255,215,0,0.15);
           transform: translateY(-6px);
           box-shadow: 0 20px 40px -16px rgba(0,0,0,0.4);
+          background: rgba(26,26,26,0.85);
         }
         .jk-mission-icon {
           width: 64px;
@@ -322,14 +323,13 @@ export default function About() {
           margin: 0 0 8px;
         }
         .jk-mission-card p {
-          color: #aaa;
+          color: #ccc;
           font-size: 1rem;
           line-height: 1.7;
           margin: 0;
         }
 
         /* ===== VALUES ===== */
-        .jk-about-values { background: #0a0a0a; }
         .jk-values-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -339,7 +339,8 @@ export default function About() {
         .jk-value-item {
           text-align: center;
           padding: 24px 16px;
-          background: #1a1a1a;
+          background: rgba(26,26,26,0.6);
+          backdrop-filter: blur(8px);
           border-radius: 16px;
           border: 1px solid rgba(255,255,255,0.04);
           transition: all 0.3s ease;
@@ -347,6 +348,7 @@ export default function About() {
         .jk-value-item:hover {
           border-color: rgba(255,215,0,0.1);
           transform: translateY(-4px);
+          background: rgba(26,26,26,0.8);
         }
         .jk-value-icon {
           width: 40px;
@@ -369,12 +371,6 @@ export default function About() {
         }
 
         /* ===== CTA ===== */
-        .jk-about-cta {
-          background: #0d0d0d;
-          padding-top: 20px;
-          padding-bottom: 0;
-          margin-bottom: 0;
-        }
         .jk-cta-banner {
           position: relative;
           border-radius: 32px;
@@ -382,10 +378,14 @@ export default function About() {
           min-height: 320px;
           display: flex;
           align-items: center;
+          background: rgba(26,26,26,0.7);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255,215,0,0.05);
         }
         .jk-cta-bg {
           position: absolute;
           inset: 0;
+          opacity: 0.3;
         }
         .jk-cta-bg img {
           width: 100%;
@@ -395,7 +395,7 @@ export default function About() {
         .jk-cta-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(135deg, rgba(0,0,0,0.88), rgba(0,0,0,0.4));
+          background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
         }
         .jk-cta-content {
           position: relative;
@@ -444,7 +444,7 @@ export default function About() {
           .jk-about-features-grid { grid-template-columns: repeat(2, 1fr); }
           .jk-values-grid { grid-template-columns: repeat(2, 1fr); }
           .jk-mission-grid { grid-template-columns: 1fr 1fr; }
-          .jk-about-hero { min-height: 60vh; }
+          .jk-about-hero { min-height: 80vh; }
           .jk-about-hero h1 { font-size: 3rem; }
         }
 
@@ -453,7 +453,7 @@ export default function About() {
           .jk-values-grid { grid-template-columns: 1fr 1fr; }
           .jk-mission-grid { grid-template-columns: 1fr; }
           .jk-about-hero h1 { font-size: 2.4rem; }
-          .jk-about-hero { padding: 20px 0 40px; min-height: 45vh; margin-top: -40px; padding-top: 100px; }
+          .jk-about-hero { padding: 20px 0 40px; min-height: 60vh; margin-top: -40px; padding-top: 100px; }
           .jk-about-image-badge { right: 0; padding: 12px 18px; }
           .jk-about-image-badge .badge-number { font-size: 1.5rem; }
           .jk-about-hero p { font-size: 1rem; }
@@ -461,22 +461,23 @@ export default function About() {
 
         @media (max-width: 576px) {
           .jk-about-hero h1 { font-size: 1.8rem; }
-          .jk-about-hero { margin-top: -30px; padding-top: 80px; min-height: 35vh; }
+          .jk-about-hero { margin-top: -30px; padding-top: 80px; min-height: 50vh; }
           .jk-about-hero p { font-size: 0.95rem; }
           .jk-about-hero-content { padding-top: 20px; }
+          .jk-about-bg { opacity: 0.15; }
+          .jk-about-bg {
+            background-size: cover;
+            background-position: center;
+          }
         }
       `}</style>
 
+      {/* ============ BACKGROUND IMAGE ============ */}
+      <div className="jk-about-bg" />
+
       {/* ============ HERO ============ */}
       <section className="jk-about-hero" ref={heroRef}>
-        <motion.div className="jk-about-hero-bg" style={{ y: heroImgY, opacity: heroOpacity }}>
-          <img src={IMG.aboutHero} alt="About JK Chaat Cafe" />
-          <div className="jk-about-hero-gradient" />
-        </motion.div>
-
         <div className="container jk-about-hero-content">
-          
-
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -485,13 +486,13 @@ export default function About() {
             Building <span className="grad-text">Cafe Owners</span>
           </motion.h1>
 
-         <motion.p
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.7, delay: 0.2 }}
->
-  JK Chaat Cafe helps first-time entrepreneurs launch a fully branded cafe business — interiors, kitchen equipment, signature masala, menu, staff training and marketing, handled end to end.
-</motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            JK Chaat Cafe helps first-time entrepreneurs launch a fully branded cafe business — interiors, kitchen equipment, signature masala, menu, staff training and marketing, handled end to end.
+          </motion.p>
         </div>
       </section>
 
@@ -506,7 +507,6 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              
               <h2 className="section-title">Innovative and continuous progress since 2020</h2>
               <p>
                 Established in 2020, JK Chaat Cafe has grown rapidly and now the brand has expanded across India. 
@@ -538,10 +538,9 @@ export default function About() {
       </section>
 
       {/* ============ FEATURES ============ */}
-      <section className="section jk-about-features">
+      <section className="section">
         <div className="container">
           <Reveal className="section-head center">
-           
             <h2 className="section-title">Our Core Principles</h2>
           </Reveal>
           <div className="jk-about-features-grid">
@@ -567,10 +566,9 @@ export default function About() {
       </section>
 
       {/* ============ MISSION & VISION ============ */}
-      <section className="section jk-about-mission">
+      <section className="section">
         <div className="container">
           <Reveal className="section-head center">
-       
             <h2 className="section-title">Mission & Vision</h2>
           </Reveal>
           <div className="jk-mission-grid">
@@ -611,10 +609,9 @@ export default function About() {
       </section>
 
       {/* ============ VALUES ============ */}
-      <section className="section jk-about-values">
+      <section className="section">
         <div className="container">
           <Reveal className="section-head center">
-            
             <h2 className="section-title">What Drives Us</h2>
           </Reveal>
           <div className="jk-values-grid">
@@ -639,10 +636,9 @@ export default function About() {
       </section>
 
       {/* ============ JOURNEY ============ */}
-      <section className="section" style={{ background: '#0d0d0d' }}>
+      <section className="section">
         <div className="container">
           <Reveal className="section-head center">
-          
             <h2 className="section-title">A short history, built one franchise at a time.</h2>
           </Reveal>
           <Journey steps={historySteps} />
@@ -650,7 +646,7 @@ export default function About() {
       </section>
 
       {/* ============ CTA ============ */}
-      <section className="section jk-about-cta">
+      <section className="section">
         <div className="container">
           <motion.div className="jk-cta-banner"
             initial={{ opacity: 0, y: 30 }}
