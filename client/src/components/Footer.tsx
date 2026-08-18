@@ -64,7 +64,7 @@ export default function Footer() {
           <span>© 2026 JK Chaat Cafe. All rights reserved.</span>
           <span>
             <a href="tel:+910000000000">9981105588</a> · 
-            <a href="mailto:franchise@jkchaatcafe.com">info@jkchaatcafe.com</a>
+            <a href="mailto:franchise@jkchaatcafe.com">jkchaatcafe@gmail.com</a>
           </span>
         </div>
       </div>

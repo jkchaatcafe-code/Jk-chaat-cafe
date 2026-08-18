@@ -31,22 +31,31 @@ export default function Header() {
   return (
     <>
       <style>{`
-        /* ===== HEADER WRAPPER - STICKY ===== */
+        /* ===== HEADER WRAPPER - TRANSPARENT BACKGROUND ===== */
         .header-wr {
-          position: sticky;
+          position: fixed;
           top: 0;
           left: 0;
           right: 0;
           z-index: 1000;
-          background: rgba(0,0,0,0.85) !important;
-          backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          background: transparent !important;
+          backdrop-filter: none !important;
+          border-bottom: none !important;
+          padding: 0;
+          transition: all 0.3s ease;
         }
 
-        /* ===== TOP BAR ===== */
+        /* ===== WHEN SCROLLED - SLIGHTLY DARKER BUT STILL TRANSPARENT ===== */
+        .header-wr.scrolled {
+          background: rgba(0,0,0,0.4) !important;
+          backdrop-filter: blur(8px) !important;
+          border-bottom: 1px solid rgba(255, 215, 0, 0.05) !important;
+        }
+
+        /* ===== TOP BAR - INCREASED HEIGHT ===== */
         .header-top {
           background: transparent !important;
-          padding: 8px 0;
+          padding: 14px 0 10px 0;
         }
         .header-top .center-wr {
           max-width: 1400px;
@@ -67,28 +76,28 @@ export default function Header() {
           display: block;
         }
         .header-logo-block img {
-          height: 44px;
+          height: 48px;
           width: auto;
-          filter: none !important;
+          /* NO FILTER - ORIGINAL COLOR */
         }
 
-        /* ===== CONTACT & SOCIAL ===== */
+        /* ===== CONTACT & SOCIAL - INCREASED SIZE ===== */
         .header-call-email-block {
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 24px;
           flex-wrap: wrap;
         }
 
-        /* ===== CALL ICON - REAL COLOR ===== */
+        /* ===== CALL ICON - INCREASED SIZE ===== */
         .header-call-email {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
         .header-call-email .call-icon {
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           background: #25D366;
           display: flex;
@@ -97,8 +106,8 @@ export default function Header() {
           flex-shrink: 0;
         }
         .header-call-email .call-icon svg {
-          width: 22px;
-          height: 22px;
+          width: 24px;
+          height: 24px;
           fill: #fff;
         }
         .header-call-email-detail {
@@ -108,14 +117,15 @@ export default function Header() {
           gap: 4px;
         }
         .header-call-email-detail span {
-          color: rgba(255,255,255,0.5);
-          font-size: 12px;
+          color: rgba(255,255,255,0.6);
+          font-size: 13px;
           font-weight: 500;
         }
         .header-call-email-detail a {
-          color: rgba(255,255,255,0.85);
+          color: rgba(255,255,255,0.9);
           text-decoration: none;
-          font-size: 13px;
+          font-size: 14px;
+          font-weight: 500;
           transition: color 0.3s ease;
         }
         .header-call-email-detail a:hover {
@@ -126,15 +136,15 @@ export default function Header() {
           margin: 0 2px;
         }
 
-        /* ===== EMAIL ICON - REAL COLOR ===== */
+        /* ===== EMAIL ICON - INCREASED SIZE ===== */
         .header-email-icon {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
         .header-email-icon .email-icon {
-          width: 40px;
-          height: 40px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           background: #EA4335;
           display: flex;
@@ -143,21 +153,21 @@ export default function Header() {
           flex-shrink: 0;
         }
         .header-email-icon .email-icon svg {
-          width: 22px;
-          height: 22px;
+          width: 24px;
+          height: 24px;
           fill: #fff;
         }
 
-        /* ===== SOCIAL ICONS - REAL COLORS ===== */
+        /* ===== SOCIAL ICONS - INCREASED SIZE ===== */
         .header-social-icon {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
         }
         .header-social-icon ul {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 12px;
           list-style: none;
           margin: 0;
           padding: 0;
@@ -166,8 +176,8 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 38px;
-          height: 38px;
+          width: 42px;
+          height: 42px;
           border-radius: 50%;
           transition: all 0.3s ease;
           text-decoration: none;
@@ -176,8 +186,8 @@ export default function Header() {
           transform: translateY(-3px) scale(1.1);
         }
         .header-social-icon ul li a svg {
-          width: 20px;
-          height: 20px;
+          width: 22px;
+          height: 22px;
           fill: #fff;
         }
 
@@ -216,10 +226,10 @@ export default function Header() {
           box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
 
-        /* ===== BOTTOM NAVIGATION ===== */
+        /* ===== BOTTOM NAVIGATION - INCREASED SIZE ===== */
         .header-bottom {
           background: transparent !important;
-          border-top: 1px solid rgba(255, 255, 255, 0.03);
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         .header-bottom .center-wr {
           max-width: 1400px;
@@ -230,7 +240,7 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px 0;
+          padding: 10px 0;
         }
         .header-menu {
           display: flex;
@@ -239,20 +249,20 @@ export default function Header() {
         .header-menu .menu {
           display: flex;
           align-items: center;
-          gap: 28px;
+          gap: 32px;
           list-style: none;
           margin: 0;
           padding: 0;
         }
         .header-menu .menu li a {
-          color: rgba(255,255,255,0.8);
+          color: rgba(255,255,255,0.85);
           text-decoration: none;
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           position: relative;
-          padding: 4px 0;
+          padding: 6px 0;
           transition: color 0.3s ease;
-          letter-spacing: 0.3px;
+          letter-spacing: 0.5px;
         }
         .header-menu .menu li a::after {
           content: '';
@@ -278,35 +288,35 @@ export default function Header() {
           width: 100%;
         }
 
-        /* ===== BURGER MENU ===== */
+        /* ===== BURGER MENU - INCREASED SIZE ===== */
         .burger {
           display: none;
           flex-direction: column;
-          gap: 4px;
+          gap: 5px;
           background: none;
           border: none;
           cursor: pointer;
-          padding: 4px;
+          padding: 6px;
           z-index: 1001;
         }
         .burger span {
           display: block;
-          width: 24px;
-          height: 2px;
+          width: 28px;
+          height: 2.5px;
           background: #fff;
           border-radius: 2px;
           transition: all 0.3s ease;
           transform-origin: center;
         }
         .burger.open span:nth-child(1) {
-          transform: rotate(45deg) translate(4px, 4px);
+          transform: rotate(45deg) translate(5px, 5px);
         }
         .burger.open span:nth-child(2) {
           opacity: 0;
           transform: scaleX(0);
         }
         .burger.open span:nth-child(3) {
-          transform: rotate(-45deg) translate(4px, -4px);
+          transform: rotate(-45deg) translate(5px, -5px);
         }
         .burger:hover span {
           background: #FFD700;
@@ -322,7 +332,7 @@ export default function Header() {
           height: 100vh;
           background: rgba(10,10,10,0.98);
           backdrop-filter: blur(20px);
-          padding: 80px 28px 40px;
+          padding: 100px 28px 40px;
           display: flex;
           flex-direction: column;
           gap: 2px;
@@ -443,10 +453,13 @@ export default function Header() {
             padding: 0 32px;
           }
           .header-menu .menu {
-            gap: 24px;
+            gap: 28px;
           }
           .header-menu .menu li a {
-            font-size: 12.5px;
+            font-size: 13px;
+          }
+          .header-logo-block img {
+            height: 44px;
           }
         }
 
@@ -456,6 +469,46 @@ export default function Header() {
           .header-bottom .center-wr {
             padding: 0 24px;
           }
+          .header-menu .menu {
+            gap: 22px;
+          }
+          .header-menu .menu li a {
+            font-size: 12.5px;
+          }
+          .header-logo-block img {
+            height: 42px;
+          }
+          .header-call-email-block {
+            gap: 18px;
+          }
+          .header-call-email .call-icon,
+          .header-email-icon .email-icon {
+            width: 40px;
+            height: 40px;
+          }
+          .header-call-email .call-icon svg,
+          .header-email-icon .email-icon svg {
+            width: 22px;
+            height: 22px;
+          }
+          .header-social-icon ul li a {
+            width: 38px;
+            height: 38px;
+          }
+          .header-social-icon ul li a svg {
+            width: 20px;
+            height: 20px;
+          }
+          .header-call-email-detail span {
+            font-size: 12px;
+          }
+          .header-call-email-detail a {
+            font-size: 13px;
+          }
+        }
+
+        /* --- 820px to 992px --- */
+        @media (max-width: 992px) {
           .header-menu .menu {
             gap: 18px;
           }
@@ -470,8 +523,8 @@ export default function Header() {
           }
           .header-call-email .call-icon,
           .header-email-icon .email-icon {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
           }
           .header-call-email .call-icon svg,
           .header-email-icon .email-icon svg {
@@ -479,52 +532,12 @@ export default function Header() {
             height: 20px;
           }
           .header-social-icon ul li a {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
           }
           .header-social-icon ul li a svg {
             width: 18px;
             height: 18px;
-          }
-          .header-call-email-detail span {
-            font-size: 11px;
-          }
-          .header-call-email-detail a {
-            font-size: 12px;
-          }
-        }
-
-        /* --- 820px to 992px --- */
-        @media (max-width: 992px) {
-          .header-menu .menu {
-            gap: 14px;
-          }
-          .header-menu .menu li a {
-            font-size: 11.5px;
-          }
-          .header-logo-block img {
-            height: 38px;
-          }
-          .header-call-email-block {
-            gap: 12px;
-          }
-          .header-call-email .call-icon,
-          .header-email-icon .email-icon {
-            width: 34px;
-            height: 34px;
-          }
-          .header-call-email .call-icon svg,
-          .header-email-icon .email-icon svg {
-            width: 18px;
-            height: 18px;
-          }
-          .header-social-icon ul li a {
-            width: 32px;
-            height: 32px;
-          }
-          .header-social-icon ul li a svg {
-            width: 16px;
-            height: 16px;
           }
         }
 
@@ -537,47 +550,47 @@ export default function Header() {
             display: flex;
           }
           .header-logo-block img {
-            height: 34px;
+            height: 36px;
           }
           .header-top {
-            padding: 6px 0;
+            padding: 12px 0 8px 0;
           }
           .header-bottom-content {
             justify-content: space-between;
           }
           .header-call-email-block {
-            gap: 10px;
+            gap: 12px;
           }
           .header-call-email .call-icon,
           .header-email-icon .email-icon {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
           }
           .header-call-email .call-icon svg,
           .header-email-icon .email-icon svg {
+            width: 18px;
+            height: 18px;
+          }
+          .header-call-email-detail span {
+            font-size: 11px;
+          }
+          .header-call-email-detail a {
+            font-size: 12px;
+          }
+          .header-social-icon ul li a {
+            width: 34px;
+            height: 34px;
+          }
+          .header-social-icon ul li a svg {
             width: 17px;
             height: 17px;
           }
-          .header-call-email-detail span {
-            font-size: 10px;
-          }
-          .header-call-email-detail a {
-            font-size: 11px;
-          }
-          .header-social-icon ul li a {
-            width: 30px;
-            height: 30px;
-          }
-          .header-social-icon ul li a svg {
-            width: 15px;
-            height: 15px;
-          }
           .header-social-icon ul {
-            gap: 6px;
+            gap: 8px;
           }
           .jk-mobile-menu {
             max-width: 100%;
-            padding: 80px 24px 30px;
+            padding: 100px 24px 30px;
           }
           .jk-mobile-menu a {
             font-size: 17px;
@@ -602,59 +615,59 @@ export default function Header() {
             padding: 0 20px;
           }
           .header-logo-block img {
-            height: 32px;
+            height: 34px;
           }
           .header-top {
-            padding: 4px 0;
+            padding: 10px 0 6px 0;
           }
           .header-bottom-content {
             padding: 4px 0;
           }
           .header-call-email-block {
-            gap: 8px;
+            gap: 10px;
           }
           .header-call-email {
-            gap: 6px;
+            gap: 8px;
           }
           .header-email-icon {
-            gap: 6px;
+            gap: 8px;
           }
           .header-call-email .call-icon,
           .header-email-icon .email-icon {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
           }
           .header-call-email .call-icon svg,
           .header-email-icon .email-icon svg {
+            width: 16px;
+            height: 16px;
+          }
+          .header-call-email-detail span {
+            font-size: 10px;
+          }
+          .header-call-email-detail a {
+            font-size: 11px;
+          }
+          .header-social-icon ul li a {
+            width: 30px;
+            height: 30px;
+          }
+          .header-social-icon ul li a svg {
             width: 15px;
             height: 15px;
           }
-          .header-call-email-detail span {
-            font-size: 9px;
-          }
-          .header-call-email-detail a {
-            font-size: 10px;
-          }
-          .header-social-icon ul li a {
-            width: 28px;
-            height: 28px;
-          }
-          .header-social-icon ul li a svg {
-            width: 14px;
-            height: 14px;
-          }
           .header-social-icon ul {
-            gap: 4px;
+            gap: 6px;
           }
           .burger span {
-            width: 22px;
-            height: 2px;
+            width: 24px;
+            height: 2.5px;
           }
           .burger {
-            gap: 3px;
+            gap: 4px;
           }
           .jk-mobile-menu {
-            padding: 70px 20px 30px;
+            padding: 90px 20px 30px;
           }
           .jk-mobile-menu a {
             font-size: 16px;
@@ -683,59 +696,59 @@ export default function Header() {
             padding: 0 16px;
           }
           .header-logo-block img {
-            height: 28px;
+            height: 30px;
           }
           .header-top {
-            padding: 4px 0;
+            padding: 8px 0 6px 0;
           }
           .header-bottom-content {
             padding: 4px 0;
           }
           .header-call-email-block {
-            gap: 6px;
+            gap: 8px;
           }
           .header-call-email {
-            gap: 4px;
+            gap: 6px;
           }
           .header-email-icon {
-            gap: 4px;
+            gap: 6px;
           }
           .header-call-email .call-icon,
           .header-email-icon .email-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
           }
           .header-call-email .call-icon svg,
           .header-email-icon .email-icon svg {
+            width: 14px;
+            height: 14px;
+          }
+          .header-call-email-detail span {
+            font-size: 9px;
+          }
+          .header-call-email-detail a {
+            font-size: 10px;
+          }
+          .header-social-icon ul li a {
+            width: 26px;
+            height: 26px;
+          }
+          .header-social-icon ul li a svg {
             width: 13px;
             height: 13px;
           }
-          .header-call-email-detail span {
-            font-size: 8px;
-          }
-          .header-call-email-detail a {
-            font-size: 9px;
-          }
-          .header-social-icon ul li a {
-            width: 24px;
-            height: 24px;
-          }
-          .header-social-icon ul li a svg {
-            width: 12px;
-            height: 12px;
-          }
           .header-social-icon ul {
-            gap: 4px;
+            gap: 5px;
           }
           .burger span {
-            width: 18px;
+            width: 20px;
             height: 2px;
           }
           .burger {
             gap: 3px;
           }
           .jk-mobile-menu {
-            padding: 60px 16px 30px;
+            padding: 80px 16px 30px;
           }
           .jk-mobile-menu a {
             font-size: 15px;
@@ -767,15 +780,15 @@ export default function Header() {
             padding: 0 12px;
           }
           .header-logo-block img {
-            height: 26px;
+            height: 28px;
           }
           .header-call-email-block {
-            gap: 4px;
+            gap: 6px;
           }
           .header-call-email .call-icon,
           .header-email-icon .email-icon {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
           }
           .header-call-email .call-icon svg,
           .header-email-icon .email-icon svg {
@@ -786,28 +799,28 @@ export default function Header() {
             display: none;
           }
           .header-call-email-detail a {
-            font-size: 8px;
+            font-size: 9px;
           }
           .header-social-icon ul li a {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
           }
           .header-social-icon ul li a svg {
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
           }
           .header-social-icon ul {
-            gap: 3px;
+            gap: 4px;
           }
           .burger span {
-            width: 16px;
+            width: 18px;
             height: 2px;
           }
           .burger {
-            gap: 2px;
+            gap: 3px;
           }
           .jk-mobile-menu {
-            padding: 60px 16px 30px;
+            padding: 80px 16px 30px;
           }
           .jk-mobile-menu a {
             font-size: 14px;
@@ -829,86 +842,33 @@ export default function Header() {
           }
         }
 
-        /* --- 360px to 400px --- */
-        @media (max-width: 400px) {
-          .header-logo-block img {
-            height: 24px;
-          }
-          .header-call-email-detail a {
-            font-size: 7px;
-          }
-          .header-social-icon ul li a {
-            width: 20px;
-            height: 20px;
-          }
-          .header-social-icon ul li a svg {
-            width: 10px;
-            height: 10px;
-          }
-          .header-social-icon ul {
-            gap: 2px;
-          }
-          .header-call-email .call-icon,
-          .header-email-icon .email-icon {
-            width: 20px;
-            height: 20px;
-          }
-          .header-call-email .call-icon svg,
-          .header-email-icon .email-icon svg {
-            width: 11px;
-            height: 11px;
-          }
-          .jk-mobile-menu a {
-            font-size: 13px;
-            padding: 6px 0;
-          }
-          .burger span {
-            width: 14px;
-            height: 2px;
-          }
-          .wa-float {
-            width: 32px;
-            height: 32px;
-            bottom: 8px;
-            right: 8px;
-          }
-          .wa-float svg {
-            width: 16px;
-            height: 16px;
-          }
-        }
-
         /* ============================================
                    SCROLL EFFECT
            ============================================ */
-        .header-wr.scrolled {
-          background: rgba(0,0,0,0.92) !important;
-          border-bottom: 1px solid rgba(255,215,0,0.1);
-        }
         .header-wr.scrolled .header-logo-block img {
-          height: 38px;
+          height: 42px;
         }
 
         @media (max-width: 820px) {
           .header-wr.scrolled .header-logo-block img {
-            height: 30px;
+            height: 32px;
           }
         }
         @media (max-width: 576px) {
           .header-wr.scrolled .header-logo-block img {
-            height: 26px;
+            height: 28px;
           }
         }
         @media (max-width: 400px) {
           .header-wr.scrolled .header-logo-block img {
-            height: 22px;
+            height: 24px;
           }
         }
       `}</style>
 
       {/* ===== WHATSAPP FLOATING BUTTON ===== */}
       <a
-        href="https://wa.me/9981105588?text=Hi%2C%20I%20want%20to%20know%20more%20about%20JK%20Chaat%20Cafe%20franchise"
+        href="https://wa.me/919981105588?text=Hi%2C%20I%20want%20to%20know%20more%20about%20JK%20Chaat%20Cafe%20franchise"
         target="_blank"
         rel="noopener noreferrer"
         className="wa-float"
@@ -943,9 +903,8 @@ export default function Header() {
                   </div>
                   <div className="header-call-email-detail">
                     <span>Call:</span>
-                    <a href="tel:+9981105588">99811 05588</a>
+                    <a href="tel:+919981105588">99811 05588</a>
                     <span className="comma">,</span>
-
                   </div>
                 </div>
 
@@ -959,7 +918,7 @@ export default function Header() {
                   </div>
                   <div className="header-call-email-detail">
                     <span>Email:</span>
-                    <a href="mailto:info@jkchaatcafe.com">info@jkchaatcafe.com</a>
+                    <a href="mailto:jkchaatcafe@gmail.com">jkchaatcafe@gmail.com</a>
                   </div>
                 </div>
 
@@ -967,14 +926,14 @@ export default function Header() {
                 <div className="header-social-icon">
                   <ul>
                     <li>
-                      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="fb" aria-label="Facebook">
+                      <a href="https://www.facebook.com/jkchaatcafe/" target="_blank" rel="noopener noreferrer" className="fb" aria-label="Facebook">
                         <svg viewBox="0 0 8.516 16.086">
                           <path d="M5.676,12.471c0,1.155,0,2.31,0,3.465,0,.125-.038.151-.156.15q-1.471-.007-2.943,0c-.123,0-.153-.034-.153-.153q.005-3.438,0-6.877c0-.247.039-.214-.22-.215-.683,0-1.367,0-2.051,0C.027,8.847,0,8.808,0,8.683Q.008,7.222,0,5.761c0-.1.029-.134.133-.132.719,0,1.438,0,2.157.006.11,0,.143-.029.141-.14-.005-.591-.008-1.181,0-1.772a4.051,4.051,0,0,1,.49-1.992A3.276,3.276,0,0,1,4.913.186,6.04,6.04,0,0,1,6.931.012C7.4.031,7.879.052,8.351.1c.082.009.1.035.1.112q0,1.17,0,2.34c0,.092-.027.119-.119.118-.515,0-1.03,0-1.545,0a1.729,1.729,0,0,0-.573.1.723.723,0,0,0-.484.552,2.048,2.048,0,0,0-.053.472c0,.56,0,1.12,0,1.679,0,.118.027.157.152.156.843-.005,1.687,0,2.53,0,.172,0,.17,0,.152.163q-.151,1.333-.3,2.665c0,.044-.016.086-.022.13-.035.253-.035.253-.3.253-.683,0-1.367,0-2.051,0-.139,0-.166.041-.166.17C5.679,10.161,5.677,11.316,5.676,12.471Z"/>
                         </svg>
                       </a>
                     </li>
                     <li>
-                      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="insta" aria-label="Instagram">
+                      <a href="https://www.instagram.com/jkchaatcafe/" target="_blank" rel="noopener noreferrer" className="insta" aria-label="Instagram">
                         <svg viewBox="0 0 14.571 14.604">
                           <path d="M0,11.125V3.485A.328.328,0,0,0,.025,3.4a3.19,3.19,0,0,1,.267-.939A3.926,3.926,0,0,1,4,.017c2.18-.032,4.36-.007,6.539-.007a3.96,3.96,0,0,1,1.206.185,4.02,4.02,0,0,1,2.819,3.793c.015,2.212.01,4.427,0,6.639A3.836,3.836,0,0,1,13.6,13.18,3.99,3.99,0,0,1,10.437,14.6H4.11a4.131,4.131,0,0,1-1.973-.459,4.009,4.009,0,0,1-1.888-2.1A6.551,6.551,0,0,1,0,11.125Zm7.261,2.182h.412c1.006-.005,2.015.028,3.021-.015a2.619,2.619,0,0,0,1.993-1.036,2.868,2.868,0,0,0,.589-1.873c-.005-2.032,0-4.065,0-6.1A3.559,3.559,0,0,0,13.2,3.41a2.717,2.717,0,0,0-2.232-2.065,6.666,6.666,0,0,0-1.094-.04h-5.8a2.744,2.744,0,0,0-2.8,2.809c0,.826,0,1.653,0,2.479V10.5a2.746,2.746,0,0,0,2.8,2.809c1.064.005,2.127,0,3.191,0Z"/>
                           <path d="M7.276,11.068A3.763,3.763,0,1,1,11.029,7.3a3.783,3.783,0,0,1-3.753,3.77ZM9.733,7.305A2.463,2.463,0,1,0,7.273,9.769,2.47,2.47,0,0,0,9.733,7.305Z"/>
@@ -982,15 +941,9 @@ export default function Header() {
                         </svg>
                       </a>
                     </li>
+                    
                     <li>
-                      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="yt" aria-label="YouTube">
-                        <svg viewBox="0 0 17.032 14.194">
-                          <path d="M4.8,12a4.26,4.26,0,0,1-1.7-.452A3.639,3.639,0,0,1,1.67,10.2a.4.4,0,0,1,.379-.628A4.176,4.176,0,0,0,2.9,9.452a6.779,6.779,0,0,1-.873-.313A3.631,3.631,0,0,1,.022,6.812a.526.526,0,0,1,.663-.647,4.276,4.276,0,0,0,.947.159,4.053,4.053,0,0,1-.8-.756A3.557,3.557,0,0,1,.244,2.334a.521.521,0,0,1,.9-.167,11.215,11.215,0,0,0,1.5,1.242A10.848,10.848,0,0,0,7.863,5.274c.392.037.379.037.331-.338a3.529,3.529,0,0,1,2.383-3.8,3.7,3.7,0,0,1,3.887.774.3.3,0,0,0,.307.112,8.023,8.023,0,0,0,1.514-.5c.133-.06.271-.115.385.019s.029.235-.039.35a3.937,3.937,0,0,1-1.254,1.253,5.365,5.365,0,0,0,1.05-.19c.091-.022.179-.055.271-.077a.247.247,0,0,1,.293.084.211.211,0,0,1-.042.285A6.614,6.614,0,0,1,15.779,4.3a.362.362,0,0,0-.167.34,10.132,10.132,0,0,1-2.75,7.146A9.885,9.885,0,0,1,7.127,14.9a11.054,11.054,0,0,1-6.862-.91c-.131-.063-.3-.115-.255-.3s.22-.173.369-.174A7.531,7.531,0,0,0,4.8,12Z"/>
-                        </svg>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="https://wa.me/9981105588" target="_blank" rel="noopener noreferrer" className="wa" aria-label="WhatsApp">
+                      <a href="https://wa.me/919981105588" target="_blank" rel="noopener noreferrer" className="wa" aria-label="WhatsApp">
                         <svg viewBox="0 0 24 24">
                           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                         </svg>
