@@ -7,7 +7,7 @@ import { submitLead } from '../api/client';
 import franchiseHero from '../assets/img/franchisehero.jpeg';
 
 const IMG = {
-  hero: franchiseHero, // Use imported local image
+  hero: franchiseHero,
   handshake: 'https://images.pexels.com/photos/33175648/pexels-photo-33175648.jpeg?auto=compress&cs=tinysrgb&w=900',
   kitchen: 'https://images.pexels.com/photos/19553654/pexels-photo-19553654.jpeg?auto=compress&cs=tinysrgb&w=900',
   chef: 'https://images.pexels.com/photos/30120987/pexels-photo-30120987.jpeg?auto=compress&cs=tinysrgb&w=900',
@@ -28,72 +28,11 @@ const supportPillars = [
 ];
 
 export default function Franchise() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', city: '', enquiry: '' });
-  const [showThankYou, setShowThankYou] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [formError, setFormError] = useState('');
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setFormError('');
-    try {
-      await submitLead('/leads/popup', {
-        name: formData.name,
-        phone: formData.phone,
-        email: formData.email,
-        city: formData.city,
-        message: formData.enquiry,
-      });
-      setShowPopup(false);
-      setShowThankYou(true);
-      setTimeout(() => setShowThankYou(false), 3000);
-      setFormData({ name: '', email: '', phone: '', city: '', enquiry: '' });
-    } catch (err: any) {
-      setFormError(err?.response?.data?.message || 'Could not submit. Please check your connection and try again.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  const openPopup = () => setShowPopup(true);
+  // Popup related code removed - ab hum popup use nahi karenge
+  // Sirf redirect karenge /franchise-application pe
 
   return (
     <div className="jk-franchise-v2">
-      {/* ============ POPUP ============ */}
-      {showPopup && (
-        <div className="jk-popup-overlay" onClick={(e) => e.target === e.currentTarget && setShowPopup(false)}>
-          <div className="jk-popup">
-            <button className="jk-popup-close" onClick={() => setShowPopup(false)}>✕</button>
-            <h2>Get Franchise</h2>
-            <p>Fill in your details and we'll get back to you</p>
-            <form onSubmit={handleFormSubmit}>
-              <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
-              <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
-              <input type="text" placeholder="City" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} required />
-              <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
-              <textarea placeholder="Your Enquiry..." value={formData.enquiry} onChange={(e) => setFormData({...formData, enquiry: e.target.value})} />
-              <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? 'Submitting...' : 'Submit Enquiry'}
-              </button>
-              {formError && <p style={{ color: '#E63946', fontSize: '0.85rem', marginTop: 10 }}>{formError}</p>}
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* ============ THANK YOU ============ */}
-      {showThankYou && (
-        <div className="jk-thankyou">
-          <div className="jk-thankyou-content">
-            <div className="icon">🎉</div>
-            <h2>Thank You!</h2>
-            <p>We'll get back to you shortly.</p>
-          </div>
-        </div>
-      )}
-
       {/* ============ HERO ============ */}
       <section className="fr-hero">
         <div className="fr-hero-bg"><img src={IMG.hero} alt="JK Chaat Cafe Franchise Opportunities" /></div>
@@ -106,19 +45,19 @@ export default function Franchise() {
             Join JK Chaat Cafe and start your entrepreneurial journey with a proven business model.
           </motion.p>
           
-          {/* ===== HERO BUTTON - ADDED HERE ===== */}
+          {/* ===== HERO BUTTON - Link to /franchise-application ===== */}
           <motion.div 
             className="fr-hero-buttons" 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <button className="btn-hero" onClick={openPopup}>
+            <Link to="/franchise-application" className="btn-hero">
               Get Franchise Now
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -159,26 +98,29 @@ export default function Franchise() {
             <ul>
               <li>{check}150–250 sq.ft kiosk format</li><li>{check}Core kitchen equipment</li><li>{check}Customise menu (18–22 items)</li><li>{check}10 Days Training </li><li>{check}12 Months guidance</li>
             </ul>
-            <button onClick={openPopup} className="btn-ghost">Apply for Starter</button>
+            {/* === CHANGE: Link to /franchise-application === */}
+            <Link to="/franchise-application" className="btn-ghost">Apply for Starter</Link>
           </Reveal>
           <Reveal delay={0.08} className="pkg-card featured">
             <span className="pkg-tag">Most Chosen</span><h3>Complete Cafe</h3><div className="pkg-price">₹9-10L <span>/ one-time</span></div>
             <ul>
               <li>{check}300-500 Sq.ft.din-in format</li><li>{check}Full kitchen & seating setup</li><li>{check}Customise menu  (60+ items)</li><li>{check}Launch marketing campaign</li><li>{check}24 Month Guidance</li>
             </ul>
-            <button onClick={openPopup} className="btn-ghost">Apply for Complete Cafe</button>
+            {/* === CHANGE: Link to /franchise-application === */}
+            <Link to="/franchise-application" className="btn-ghost">Apply for Complete Cafe</Link>
           </Reveal>
           <Reveal delay={0.16} className="pkg-card">
             <span className="pkg-tag">Master</span><h3>Master Franchise</h3><div className="pkg-price">Custom <span>/ region-based</span></div>
             <ul>
               <li>{check}Exclusive regional rights</li><li>{check}Multi-outlet rollout support</li><li>{check}Dedicated supply chain</li><li>{check}Priority consultation</li>
             </ul>
-            <button onClick={openPopup} className="btn-ghost">Enquire for Master Franchise</button>
+            {/* === CHANGE: Link to /franchise-application === */}
+            <Link to="/franchise-application" className="btn-ghost">Enquire for Master Franchise</Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ============ SUPPORT PILLARS — photo cards ============ */}
+      {/* ============ SUPPORT PILLARS ============ */}
       <section className="section fr-support">
         <div className="container">
           <Reveal className="section-head center">
@@ -212,10 +154,11 @@ export default function Franchise() {
             <div className="fr-cta-content">
               <h2>Ready to Start Your Franchise Journey?</h2>
               <p>Join JK Chaat Cafe and become part of India's fastest-growing food franchise network.</p>
-              <button onClick={openPopup} className="btn-primary-cta">
+              {/* === CHANGE: Link to /franchise-application === */}
+              <Link to="/franchise-application" className="btn-primary-cta">
                 Apply for Franchise Now
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -258,7 +201,7 @@ export default function Franchise() {
         /* ===== HERO - OPTIMIZED IMAGE DISPLAY ===== */
         .fr-hero {
           position: relative;
-          min-height: 90vh;
+          min-height: 110vh;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -329,6 +272,7 @@ export default function Franchise() {
           align-items: center;
           gap: 10px;
           transition: all 0.3s ease;
+          text-decoration: none;
           box-shadow: 0 8px 30px rgba(255,255,255,0.1);
         }
         .btn-hero:hover {
@@ -529,126 +473,6 @@ export default function Franchise() {
           line-height: 1.55;
         }
 
-        /* ===== POPUP ===== */
-        .jk-popup-overlay {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.7);
-          backdrop-filter: blur(8px);
-          z-index: 9999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: fadeIn 0.3s ease;
-        }
-        .jk-popup {
-          background: #1a1a1a;
-          border-radius: 24px;
-          padding: 48px;
-          max-width: 480px;
-          width: 90%;
-          border: 1px solid rgba(255,215,0,0.1);
-          position: relative;
-        }
-        .jk-popup h2 {
-          color: #FFD700;
-          font-size: 1.8rem;
-          margin-bottom: 8px;
-        }
-        .jk-popup p {
-          color: #aaa;
-          margin-bottom: 24px;
-        }
-        .jk-popup input,
-        .jk-popup textarea {
-          width: 100%;
-          padding: 12px 16px;
-          margin-bottom: 14px;
-          background: #0a0a0a;
-          border: 1px solid rgba(255,255,255,0.06);
-          border-radius: 10px;
-          color: #fff;
-          font-size: 1rem;
-          transition: border-color 0.3s ease;
-        }
-        .jk-popup input:focus,
-        .jk-popup textarea:focus {
-          outline: none;
-          border-color: #FFD700;
-        }
-        .jk-popup textarea { min-height: 80px; resize: vertical; }
-        .jk-popup .btn-primary {
-          width: 100%;
-          justify-content: center;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 14px 32px;
-          border-radius: 12px;
-          font-weight: 600;
-          font-size: 1rem;
-          text-decoration: none;
-          transition: all 0.3s ease;
-          cursor: pointer;
-          border: none;
-          background: #FFD700;
-          color: #0a0a0a;
-          box-shadow: 0 8px 30px rgba(255,215,0,0.2);
-        }
-        .jk-popup .btn-primary:hover {
-          background: #f4c430;
-          transform: translateY(-2px);
-          box-shadow: 0 12px 40px rgba(255,215,0,0.3);
-        }
-        .jk-popup-close {
-          position: absolute;
-          top: 16px;
-          right: 20px;
-          background: none;
-          border: none;
-          color: #666;
-          font-size: 1.5rem;
-          cursor: pointer;
-          transition: color 0.3s ease;
-        }
-        .jk-popup-close:hover { color: #fff; }
-        .jk-thankyou {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.8);
-          backdrop-filter: blur(12px);
-          z-index: 10000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: fadeIn 0.5s ease;
-        }
-        .jk-thankyou-content {
-          text-align: center;
-          animation: scaleUp 0.5s ease;
-        }
-        .jk-thankyou-content .icon {
-          font-size: 4rem;
-          margin-bottom: 16px;
-        }
-        .jk-thankyou-content h2 {
-          color: #FFD700;
-          font-size: 2rem;
-        }
-        .jk-thankyou-content p {
-          color: #aaa;
-          font-size: 1.1rem;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes scaleUp {
-          from { transform: scale(0.8); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
-        }
-
         /* ===== CTA SECTION ===== */
         .fr-cta {
           background: #0a0a0a;
@@ -759,9 +583,6 @@ export default function Franchise() {
           }
           .fr-cta-banner {
             padding: 40px 24px;
-          }
-          .jk-popup {
-            padding: 32px 20px;
           }
           .fr-hero-buttons {
             flex-direction: column;

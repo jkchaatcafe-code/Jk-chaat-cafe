@@ -35,55 +35,55 @@ const menuCategories = Object.keys(menuItems);
 
 // Features with SVG Icons
 const features = [
-  { 
+  {
     icon: '🌿',
-    title: 'Environment Friendly', 
-    desc: 'We are responsible for what we do, our operational activities keep the nature clean.' 
+    title: 'Environment Friendly',
+    desc: 'We are responsible for what we do, our operational activities keep the nature clean.'
   },
-  { 
+  {
     icon: '🍽️',
-    title: 'Diversified Menu', 
-    desc: 'Be it chaat, pizza, burgers, and more, we have 150+ menu variety for everyone.' 
+    title: 'Diversified Menu',
+    desc: 'Be it chaat, pizza, burgers, and more, we have 150+ menu variety for everyone.'
   },
-  { 
+  {
     icon: '⭐',
-    title: 'Best Quality & Taste', 
-    desc: 'We offer healthy and hygienic food made of natural ingredients.' 
+    title: 'Best Quality & Taste',
+    desc: 'We offer healthy and hygienic food made of natural ingredients.'
   },
-  { 
+  {
     icon: '📈',
-    title: 'Proven & Tested Concept', 
-    desc: 'We have excellent & affordable models that can be replicated easily.' 
+    title: 'Proven & Tested Concept',
+    desc: 'We have excellent & affordable models that can be replicated easily.'
   },
-  { 
+  {
     icon: '🤝',
-    title: 'World-Class Support', 
-    desc: 'Our Staff is well-skilled to assist franchise partners efficiently.' 
+    title: 'World-Class Support',
+    desc: 'Our Staff is well-skilled to assist franchise partners efficiently.'
   },
-  { 
+  {
     icon: '🔄',
-    title: 'Hassle-Free Operations', 
-    desc: 'We maintain Excellence in day-to-day operations.' 
+    title: 'Hassle-Free Operations',
+    desc: 'We maintain Excellence in day-to-day operations.'
   },
 ];
 
 // Testimonials with images
 const testimonials = [
-  { 
-    name: 'Rahil Jain', 
-    text: 'Their organization is very good and is spread over many places and the service is also very good along with the taste.', 
+  {
+    name: 'Rahil Jain',
+    text: 'Their organization is very good and is spread over many places and the service is also very good along with the taste.',
     city: 'Indore',
     image: 'https://randomuser.me/api/portraits/men/1.jpg'
   },
-  { 
-    name: 'Vinit Tiwari', 
-    text: 'chai coffee itself provides training of its products to its franchise owner along with the service of the staff.', 
+  {
+    name: 'Vinit Tiwari',
+    text: 'chai coffee itself provides training of its products to its franchise owner along with the service of the staff.',
     city: 'Bhopal',
     image: 'https://randomuser.me/api/portraits/men/2.jpg'
   },
-  { 
-    name: 'Priya Sharma', 
-    text: 'Best franchise opportunity in India. Great support and amazing food quality.', 
+  {
+    name: 'Priya Sharma',
+    text: 'Best franchise opportunity in India. Great support and amazing food quality.',
     city: 'Mumbai',
     image: 'https://randomuser.me/api/portraits/women/1.jpg'
   },
@@ -275,7 +275,7 @@ export default function Home() {
         /* ===== HERO ===== */
         .jk-hero {
           position: relative;
-          min-height: 90vh;
+          min-height: 100vh;
           display: flex;
           align-items: center;
           overflow: hidden;
@@ -858,14 +858,14 @@ export default function Home() {
           </motion.p>
 
           <motion.div className="jk-hero-buttons" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.4 }}>
-            <button className="btn btn-hero" onClick={() => setShowPopup(true)}>
+            {/* === CHANGE: Link to /franchise-application instead of popup === */}
+            <Link to="/franchise-application" className="btn btn-hero">
               Get Franchise Now
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 5l7 7-7 7" /></svg>
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
-
       {/* ============ POPUP ============ */}
       {showPopup && (
         <div className="jk-popup-overlay" onClick={(e) => e.target === e.currentTarget && setShowPopup(false)}>
@@ -874,11 +874,11 @@ export default function Home() {
             <h2>Get Franchise</h2>
             <p>Fill in your details and we'll get back to you</p>
             <form onSubmit={handleFormSubmit}>
-              <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
-              <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
-              <input type="text" placeholder="City" value={formData.city} onChange={(e) => setFormData({...formData, city: e.target.value})} required />
-              <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
-              <textarea placeholder="Your Enquiry..." value={formData.enquiry} onChange={(e) => setFormData({...formData, enquiry: e.target.value})} />
+              <input type="text" placeholder="Your Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
+              <input type="email" placeholder="Your Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} required />
+              <input type="text" placeholder="City" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} required />
+              <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} required />
+              <textarea placeholder="Your Enquiry..." value={formData.enquiry} onChange={(e) => setFormData({ ...formData, enquiry: e.target.value })} />
               <button type="submit" className="btn btn-primary" disabled={submitting}>
                 {submitting ? 'Submitting...' : 'Submit Enquiry'}
               </button>
