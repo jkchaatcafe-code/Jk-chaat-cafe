@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../api/client';
+import SEO from '../components/SEO';
+import { organizationSchema, breadcrumbSchema } from '../utils/schema';
 
 type Blog = {
   _id: string;
@@ -12,6 +14,10 @@ type Blog = {
   excerpt?: string;
   content: string;
   coverImage?: string;
+  featuredImage?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  author?: string;
   published: boolean;
   createdAt: string;
   updatedAt: string;
@@ -50,6 +56,24 @@ export default function BlogDetail() {
     }
     return '/images/blog-default.jpg';
   };
+
+  // Function to get featured image for OG
+  const getFeaturedImage = () => {
+    if (blog?.featuredImage) {
+      return blog.featuredImage;
+    }
+    if (blog?.coverImage) {
+      return `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${blog.coverImage}`;
+    }
+    return 'https://jkchaatcafe.com/images/og-default.jpg';
+  };
+
+  // Breadcrumb items for schema
+  const breadcrumbItems = blog ? [
+    { name: 'Home', url: 'https://jkchaatcafe.com/' },
+    { name: 'Blogs', url: 'https://jkchaatcafe.com/blogs' },
+    { name: blog.title, url: `https://jkchaatcafe.com/blogs/${blog.slug}` }
+  ] : [];
 
   if (loading) {
     return (
@@ -125,6 +149,20 @@ export default function BlogDetail() {
 
   return (
     <>
+      <SEO
+        title={blog.seoTitle || blog.title}
+        description={blog.seoDescription || blog.excerpt || `Read about ${blog.title} on JK Chaat Cafe Blog`}
+        canonical={`https://jkchaatcafe.com/blogs/${blog.slug}`}
+        ogImage={getFeaturedImage()}
+        ogType="article"
+        schema={[organizationSchema, breadcrumbSchema(breadcrumbItems)]}
+        article={{
+          publishedTime: blog.createdAt,
+          modifiedTime: blog.updatedAt,
+          author: blog.author || 'JK Chaat Cafe'
+        }}
+      />
+
       <style>{`
         .blog-detail {
           padding: 40px 0 80px;

@@ -25,11 +25,11 @@ export default function PrivacyPolicy() {
           <h2>4. Sharing of Information</h2>
           <p>We do not sell your personal information. Data may be shared with regional franchise consultants strictly to process your enquiry.</p>
           <h2>5. Your Rights</h2>
-          <p>You may request access to, correction of, or deletion of your data by contacting jkchaatcafe@gmail.com.</p>
+          <p>You may request access to, correction of, or deletion of your data by contacting info@jkchaatcafe.com.</p>
           <h2>6. Cookies</h2>
           <p>We use basic cookies to remember popup preferences and improve site performance.</p>
           <h2>7. Contact</h2>
-          <p>Questions about this policy can be sent to jkchaatcafe@gmail.com.</p>
+          <p>Questions about this policy can be sent to info@jkchaatcafe.com.</p>
         </div>
       </section>
     </>

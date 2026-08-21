@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login/
+Disallow: /admin/*
+
+Sitemap: https://jkchaatcafe.com/sitemap.xml

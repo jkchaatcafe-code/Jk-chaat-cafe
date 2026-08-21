@@ -30,14 +30,44 @@ app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(express.json({ limit: '1mb' }));
 app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 
+// ---- CORS Configuration ----
+const corsOptions = {
+  origin: [
+    'https://www.jkchaatcafe.com',
+    'https://jkchaatcafe.com',
+    'https://jk-chaat-cafe.vercel.app',
+    'http://localhost:5173'
+  ],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+// Also support dynamic origins from environment variable
 const allowedOrigins = (process.env.CLIENT_ORIGIN || '').split(',').map(o => o.trim()).filter(Boolean);
-app.use(cors({
+
+// Merge both CORS configurations - use the explicit list first, then fallback to env
+const finalCorsOptions = {
   origin: (origin, cb) => {
-    if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) return cb(null, true);
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return cb(null, true);
+    
+    // Check against explicit list first
+    if (corsOptions.origin.includes(origin)) {
+      return cb(null, true);
+    }
+    
+    // Check against environment variable list
+    if (allowedOrigins.length > 0 && allowedOrigins.includes(origin)) {
+      return cb(null, true);
+    }
+    
     cb(new Error('Not allowed by CORS'));
   },
   credentials: true,
-}));
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(finalCorsOptions));
 
 // Serve uploaded images (e.g. http://localhost:5000/uploads/169...-abcd.jpg)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

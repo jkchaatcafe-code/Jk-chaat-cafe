@@ -918,7 +918,7 @@ export default function Header() {
                   </div>
                   <div className="header-call-email-detail">
                     <span>Email:</span>
-                    <a href="mailto:jkchaatcafe@gmail.com">jkchaatcafe@gmail.com</a>
+                    <a href="mailto:info@jkchaatcafe.com">info@jkchaatcafe.com</a>
                   </div>
                 </div>
 
