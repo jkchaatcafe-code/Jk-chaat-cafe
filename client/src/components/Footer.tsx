@@ -31,7 +31,7 @@ export default function Footer() {
             <Link to="/" className="footer-brand-link">
               <img src={logo} alt="JK Chaat Cafe" className="footer-logo" />
             </Link>
-            <p>We help entrepreneurs launch profitable cafe businesses — complete setup, supply and support, start to finish.</p>
+            <p>We support businesswomen in starting their successful cafe ventures — total setup, delivery and assistance, from beginning to end.</p>
           </div>
           <div className="foot-col">
             <h5>Explore</h5>

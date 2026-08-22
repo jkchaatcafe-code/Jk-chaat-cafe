@@ -18,9 +18,9 @@ const IMG = {
 const check = <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.4" strokeLinecap="round"><path d="M20 6 9 17l-5-5" /></svg>;
 
 const models = [
-  { title: 'FOFO Model', sub: 'Franchise Owned, Franchise Operated', text: 'You invest and run day-to-day operations yourself, with our complete training and support.' },
-  { title: 'Single Unit', sub: 'One Outlet, One City', text: 'Perfect for first-time entrepreneurs testing the waters with a focused, manageable investment.' },
-  { title: 'Multi-Unit', sub: 'Scale Across a City', text: 'Open multiple outlets under one agreement, with shared supply chain efficiencies.' },
+  { title: 'FOFO Model', sub: 'Franchisor Owned and Franchisor Run Model', text: 'You are required to invest and manage day-to-day activities in this model with the help of training provided by us.' },
+  { title: 'Single Unit', sub: 'Single location outlet in a city', text: 'Suitable for beginners who want to test waters with a minimal investment.' },
+  { title: 'Multi-Unit', sub: 'Multiple outlets in a city', text: 'Establish outlets at various places under a single agreement and benefit from supply chain efficiency.' },
 ];
 
 const supportPillars = [
@@ -78,10 +78,11 @@ export default function Franchise() {
           <div className="fr-hero-overlay" />
           <div className="container fr-hero-content">
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-              Franchise plans for <span className="grad-text">first-time owners</span>
+              Franchising opportunities <span className="grad-text">for novice owners.</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-              Join JK Chaat Cafe and start your entrepreneurial journey with a proven business model.
+              Become a part of JK Chaat Cafe and start a journey as an entrepreneur with an established business model.
+
             </motion.p>
             
             {/* ===== HERO BUTTON - Link to /franchise-application ===== */}

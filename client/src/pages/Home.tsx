@@ -40,32 +40,32 @@ const features = [
   {
     icon: '🌿',
     title: 'Environment Friendly',
-    desc: 'We are responsible for what we do, our operational activities keep the nature clean.'
+    desc: 'We take responsibility for our actions and our operations.'
   },
   {
     icon: '🍽️',
     title: 'Diversified Menu',
-    desc: 'Be it chaat, pizza, burgers, and more, we have 150+ menu variety for everyone.'
+    desc: 'From chaat to pizza and burgers, we provide more than 150 varieties.'
   },
   {
     icon: '⭐',
     title: 'Best Quality & Taste',
-    desc: 'We offer healthy and hygienic food made of natural ingredients.'
+    desc: 'We serve healthy & hygienic food made of natural products.'
   },
   {
     icon: '📈',
     title: 'Proven & Tested Concept',
-    desc: 'We have excellent & affordable models that can be replicated easily.'
+    desc: 'We have a great business plan that can be easily operated.'
   },
   {
     icon: '🤝',
     title: 'World-Class Support',
-    desc: 'Our Staff is well-skilled to assist franchise partners efficiently.'
+    desc: 'Our personnel are very skilled to help franchise.'
   },
   {
     icon: '🔄',
     title: 'Hassle-Free Operations',
-    desc: 'We maintain Excellence in day-to-day operations.'
+    desc: 'Our team operates daily without any problems.'
   },
 ];
 
@@ -931,13 +931,13 @@ export default function Home() {
                 <p>We've grown into a top-notch food franchise brand by continuously offering quality services to our clients. Being one of the most-trusted food brands, our focus is to deliver rich quality food, hygiene, awesome taste, and unmatched services to our partners.</p>
                 <div className="jk-about-features">
                   <div className="jk-about-feature">
-                    <div><h4>360° Brand Support</h4><p>Location guidance, site development, and opening event planning.</p></div>
+                    <div><h4>360° Brand Support</h4><p>Providing site instruction, site design, and planning the launch event.</p></div>
                   </div>
                   <div className="jk-about-feature">
-                    <div><h4>ROI in 12-15 Months</h4><p>High profit margin with low investment and fast returns.</p></div>
+                    <div><h4>ROI in 12-15 Months</h4><p>High profit margin profit while being low-investment yielding quick returns</p></div>
                   </div>
                   <div className="jk-about-feature">
-                    <div><h4>Complete Training Support</h4><p>Owner training, staff hiring, and operation audit support.</p></div>
+                    <div><h4>Complete Training Support</h4><p>Training of owners, recruitment of personnel, and helping with the operational audit.</p></div>
                   </div>
                 </div>
                 <Link to="/about" className="btn btn-primary">More About Us <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 5l7 7-7 7" /></svg></Link>
@@ -1082,7 +1082,7 @@ export default function Home() {
               </div>
               <div className="jk-cta-content">
                 <h2>Start Your Entrepreneurship Journey Today</h2>
-                <p>Join us for unbeatable success with our unique formula to outperform well-established players.</p>
+                <p>Be a part of our campaign towards unmatched accomplishments through our innovative methodology to outperform the existing leaders in the market.</p>
                 <div className="jk-cta-buttons">
                   <Link to="/franchise-application" className="btn btn-primary">Become a Franchise Partner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 5l7 7-7 7" /></svg></Link>
                   <Link to="/contact" className="btn btn-ghost">Contact Us</Link>

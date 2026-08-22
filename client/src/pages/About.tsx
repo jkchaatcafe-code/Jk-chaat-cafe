@@ -30,22 +30,22 @@ const aboutFeatures = [
   { 
     icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
     title: 'Perfect Ingredients', 
-    desc: 'We use only the finest, freshest ingredients sourced from trusted suppliers.' 
+    desc: 'Only premium and fresh ingredients are utilized from certified suppliers.' 
   },
   { 
     icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6',
     title: 'Eco-Friendly', 
-    desc: 'We ensure our operational activities adhere to standard procedures for a healthier environment.' 
+    desc: 'Our operational processes comply with regulations regarding the importance of being eco-friendly.' 
   },
   { 
     icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75',
     title: 'Dedicated Service', 
-    desc: 'Our staff is well-skilled & trained to deliver great food and great service.' 
+    desc: 'Our employees are highly trained and skilled to produce delicious food as well as good service.' 
   },
   { 
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
     title: 'Sustainable Models', 
-    desc: 'Low cost business models that fit into modern-day trends for long-term success.' 
+    desc: 'The low cost operating models are recommended to running the business in accordance with important trends.' 
   },
 ];
 
@@ -502,7 +502,8 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              JK Chaat Cafe helps first-time entrepreneurs launch a fully branded cafe business — interiors, kitchen equipment, signature masala, menu, staff training and marketing, handled end to end.
+              Cafe Owners by JK is a service aimed at assisting first-time business owners start a branded café establishment from scratch, like setting up interiors, kitchen appliances, signature spices, menu development, staff training, and advertising.
+
             </motion.p>
           </div>
         </section>
@@ -520,14 +521,11 @@ export default function About() {
               >
                 <h2 className="section-title">Innovative and continuous progress since 2020</h2>
                 <p>
-                  Established in 2020, JK Chaat Cafe has grown rapidly and now the brand has expanded across India. 
-                  Being one of the most-trusted food brands, our focus is to deliver rich quality food with proper 
-                  health and hygiene regulations, awesome taste and unmatched services to our partners.
+                  Founded in 2020, JK Chaat Cafe has flourished at a speedy rate which took the company to all over India. We are among the most reputable food brands which are focused on providing high-end food in terms of quality and taste, as well as in compliance with health and hygiene requirements, with great service to our associates.
                 </p>
                 <p style={{ marginTop: '16px' }}>
-                  This is the era of competitive-business thus it is important to improve the on-going process 
-                  by using technology in day-to-day operations. We are passionate to bring more dynamic and 
-                  profitable business concepts. Join our franchise family to move one step ahead of the peers.
+                 We live in the world of competitive business and therefore it is necessary to provide improvement of all ongoing processes by means of using technology in daily operations. We are keen on providing more innovative and profitable ideas for business.
+
                 </p>
               </motion.div>
 
@@ -597,7 +595,7 @@ export default function About() {
                   </svg>
                 </div>
                 <h3>Our Vision</h3>
-                <p>"To bring people together over unforgettable food, setting new standards in taste, innovation, and franchise success."</p>
+                <p>"We aim to unite individuals through top quality food, making a benchmark in innovation and food excellence."</p>
               </motion.div>
 
               <motion.div className="jk-mission-card"
@@ -613,7 +611,7 @@ export default function About() {
                   </svg>
                 </div>
                 <h3>Our Mission</h3>
-                <p>"To deliver delicious, high-quality, and hygienic food with consistent taste across every outlet, creating memorable dining experiences for our customers while empowering our franchise partners to grow successfully."</p>
+                <p>"We intend to produce high-quality food that is delicious and hygienically served in various locations to make eating a memorable occasion for our customers, while facilitating success for our affiliates."</p>
               </motion.div>
             </div>
           </div>
