@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'jk-chaat-cafe',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'tiff'],
-    // ✅ Transformation HATAYA - original size maintain karega
+    // ✅ NO transformation - original size maintain
   },
 });
 

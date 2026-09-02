@@ -1,58 +1,94 @@
-import { useRef, useState } from 'react';
-import { uploadImage, resolveImage } from '../api/adminApi';
+// client/src/admin/components/ImageUploadField.tsx
 
-export default function ImageUploadField({
-  value,
-  onChange,
-  label = 'Image',
-}: {
+import { useState } from 'react';
+import { adminApi } from '../api/adminApi';
+
+interface ImageUploadFieldProps {
+  label: string;
   value: string;
   onChange: (url: string) => void;
-  label?: string;
-}) {
-  const fileRef = useRef<HTMLInputElement>(null);
+}
+
+export default function ImageUploadField({ label, value, onChange }: ImageUploadFieldProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
 
-  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    // ✅ 20MB limit (frontend)
+    if (file.size > 20 * 1024 * 1024) {
+      setError('File too large. Max 20MB allowed.');
+      return;
+    }
+
+    // ✅ Check if it's an image
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file.');
+      return;
+    }
+
     setUploading(true);
     setError('');
+
+    const formData = new FormData();
+    formData.append('image', file);
+
     try {
-      const url = await uploadImage(file);
-      onChange(url);
+      const res = await adminApi.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      onChange(res.data.url);
+      setError('');
     } catch (err: any) {
-      setError(err?.response?.data?.message || 'Upload failed. Max size 5MB, images only.');
+      setError(err?.response?.data?.message || 'Upload failed. Please try again.');
     } finally {
       setUploading(false);
-      if (fileRef.current) fileRef.current.value = '';
     }
-  }
+  };
+
+  const getImageUrl = (url: string) => {
+    if (url.startsWith('http') || url.startsWith('data:')) return url;
+    const apiBase = import.meta.env.VITE_API_BASE || 'https://jk-chaat-cafe.onrender.com';
+    return `${apiBase}${url}`;
+  };
 
   return (
     <div className="a-field">
-      <label>{label}</label>
+      {label && <label>{label}</label>}
       <div className="a-image-upload">
         <div className="a-image-preview">
-          {value ? <img src={resolveImage(value)} alt="" /> : <span style={{ fontSize: 10, color: '#aaa' }}>No image</span>}
+          {value ? (
+            <img src={getImageUrl(value)} alt="Upload preview" />
+          ) : (
+            <span style={{ fontSize: 28, color: '#ccc' }}>+</span>
+          )}
         </div>
         <div>
-          <input ref={fileRef} type="file" accept="image/*" onChange={handleFile} style={{ display: 'none' }} id={`upload-${label}`} />
-          <button
-            type="button"
-            className="a-btn a-btn-ghost"
-            onClick={() => fileRef.current?.click()}
-            disabled={uploading}
-          >
-            {uploading ? 'Uploading...' : value ? 'Replace Image' : 'Upload Image'}
-          </button>
+          <label className="a-btn a-btn-ghost" style={{ cursor: 'pointer' }}>
+            {uploading ? 'Uploading...' : 'Upload Image'}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              disabled={uploading}
+              style={{ display: 'none' }}
+            />
+          </label>
           {value && (
-            <button type="button" className="a-btn a-btn-ghost" style={{ marginLeft: 8 }} onClick={() => onChange('')}>
+            <button
+              className="a-btn a-btn-danger"
+              style={{ padding: '8px 12px', fontSize: 12, marginLeft: 8 }}
+              onClick={() => onChange('')}
+            >
               Remove
             </button>
           )}
-          {error && <div className="a-msg error" style={{ marginTop: 8 }}>{error}</div>}
+          {error && <div className="a-msg error" style={{ marginTop: 6, fontSize: 12 }}>{error}</div>}
+          <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>
+            JPG, PNG, WEBP, GIF, SVG • Max 20MB
+          </div>
         </div>
       </div>
     </div>

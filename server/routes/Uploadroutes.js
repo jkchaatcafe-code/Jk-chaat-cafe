@@ -5,8 +5,8 @@ const multer = require('multer');
 
 const router = express.Router();
 
-// ✅ File size limit 20MB (ya unlimited)
-const upload = multer({ 
+// ✅ 20MB limit
+const upload = multer({
   storage,
   limits: { fileSize: 20 * 1024 * 1024 } // 20MB
 });
