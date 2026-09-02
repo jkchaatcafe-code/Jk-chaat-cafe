@@ -462,9 +462,7 @@ export default function BlogDetail() {
         <div className="container">
           <div className="blog-detail">
             <div className="blog-header">
-              <div className="breadcrumb">
-                <Link to="/">Home</Link> / <Link to="/blogs">Blogs</Link> / {blog.title}
-              </div>
+              
               <h1>{blog.title}</h1>
               <div className="blog-meta-top">
                 {blog.category && (
