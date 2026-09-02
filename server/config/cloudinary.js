@@ -1,4 +1,3 @@
-// server/config/cloudinary.js
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
@@ -12,8 +11,8 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'jk-chaat-cafe',
-    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
-    transformation: [{ width: 1200, height: 800, crop: 'limit' }],
+    allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'tiff'],
+    // ✅ Transformation HATAYA - original size maintain karega
   },
 });
 
