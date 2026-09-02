@@ -7,12 +7,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// ✅ Verify Cloudinary config
+console.log('Cloudinary configured with cloud:', process.env.CLOUDINARY_CLOUD_NAME);
+
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'jk-chaat-cafe',
     allowed_formats: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'bmp', 'tiff'],
-    // ✅ NO transformation - original size maintain
+    // ✅ No transformation - original size
   },
 });
 
