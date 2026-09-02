@@ -5,4 +5,4 @@ Disallow: /admin/*
 Disallow: /api/
 Disallow: /login/
 
-Sitemap: https://jkchaatcafe.com/sitemap.xml
+Sitemap: https://jk-chaat-cafe.onrender.com/sitemap.xml
