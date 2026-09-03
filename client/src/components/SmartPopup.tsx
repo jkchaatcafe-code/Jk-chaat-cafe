@@ -40,14 +40,23 @@ export default function SmartPopup() {
 
   return (
     <div className="popup-overlay open" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
-      <div className="popup-card popup-bottom">
+      <div className="popup-card">
         <button className="popup-close" onClick={() => setOpen(false)} aria-label="Close">&times;</button>
         <h3>Thinking of starting a cafe?</h3>
         <p>Tell us a little about your plan and our franchise team will call you back within 24 hours.</p>
         <form onSubmit={handleSubmit}>
-          <div className="form-group"><label>Full Name</label><input type="text" required value={values.name} onChange={(e) => setField('name', e.target.value)} placeholder="Your full name" /></div>
-          <div className="form-group"><label>Phone Number</label><input type="tel" required value={values.phone} onChange={(e) => setField('phone', e.target.value)} placeholder="Your phone number" /></div>
-          <div className="form-group"><label>City</label><input type="text" required value={values.city || ''} onChange={(e) => setField('city', e.target.value)} placeholder="Your city" /></div>
+          <div className="form-group">
+            <label>Full Name</label>
+            <input type="text" required value={values.name} onChange={(e) => setField('name', e.target.value)} placeholder="Your full name" />
+          </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input type="tel" required value={values.phone} onChange={(e) => setField('phone', e.target.value)} placeholder="Your phone number" />
+          </div>
+          <div className="form-group">
+            <label>City</label>
+            <input type="text" required value={values.city || ''} onChange={(e) => setField('city', e.target.value)} placeholder="Your city" />
+          </div>
           <div className="form-group">
             <label>Investment Budget</label>
             <select required value={values.budget || ''} onChange={(e) => setField('budget', e.target.value)}>
